@@ -1,0 +1,38 @@
+/*Datos personales: Carmen Méndez Camino UO299841*/
+
+/*Estilos generales del proyecto MotoGP-Desktop*/
+/*Paleta de colores en RGB: Rojo #5A1400 ; Amarillo #E8AD3B ; Marrón oscuro #111613 ; Blanco no puro #ECede6*/
+/* Hereda fuentes predeterminadas del navegador, aplica un color de fondo y un color de texto */
+/* especificidad: 001 */
+body{
+    font-family: Helvetica, Arial, sans-serif ;
+    background-color: #ECede6; 
+    color: #111613;
+}
+
+/* especificidad: 001 */
+header{ /*Hereda "color" de body*/
+    background-color: #E8AD3B;
+}
+
+/* especificidad: 002 */
+header a{
+    color: #111613; /*hereda el color de texto de body */
+    text-decoration-line:none;
+}
+
+/* especificidad: 002 */
+h1, nav{ /*Hereda "background-color" de header*/
+    color: #5A1400;
+}
+
+/* especificidad: 002 */
+p:first-child{ /*Hereda "color","background-color","font-family" de body*/
+    font-size: 0.8em; /*em es relativo*/
+}
+
+/*especificacion (0,1,2)*/
+/*Hereda de body en este caso el background*/
+header a.active {
+    color: #5A1400;
+}

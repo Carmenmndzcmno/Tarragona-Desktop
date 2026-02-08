@@ -1,0 +1,218 @@
+/*Datos personales: Carmen Méndez Camino UO299841
+/*Layout general del proyecto MotoGP-Desktop*/
+
+/* Especificidad: 001 */
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+}
+
+/* Especificidad: 001 */
+nav{
+    flex-direction: row; /* Esto redefine la propiedad por defecto de flex-direction en 'nav' */
+}
+
+/* Especificidad: 001 */
+table { /**/
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+/* Especificidad: 001 */
+th, td { /**/
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+/* Por defecto: se muestra SOLO la primera tabla */
+/* Especificidad: 002 */
+section table:nth-of-type(2) { /**/
+    display: none;
+}
+
+/* Especificidad: 002 */
+article h2+img{
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    display: block;
+}
+
+/* Reglas de layout movidas desde estilo.css */
+/* Especificidad: 001 */
+section article {
+    margin: 1em 0;
+    padding: 1em;
+}
+
+/* Especificidad: 001 */
+section figure {
+    margin: 1em 0;
+}
+
+/* Altura uniforme para imágenes del carrusel */
+/* Especificidad: 002 */
+ 
+
+/* Ajuste para contenedor del mapa */
+/* Especificidad: 003 */
+/* Aquí hay herencia porque los elementos en el div pueden heredar propiedades como color o fuente de body */
+main > section:nth-of-type(3) > div {
+    min-height: 400px;
+    background-color: #eee;
+}
+
+/* Ocultar el texto del nombre de archivo en inputs de tipo file */
+/* Especificidad: 002 */
+/* Las propiedades dont-size y color se heredan de los contenedores del label, o si no del body*/
+label > input[type="file"] {
+    font-size: 0;
+    color: transparent; 
+}
+
+/* Botón visible y con tamaño legible */
+/* Especificidad: 001 */
+label > input[type="file"]::file-selector-button {
+    font-size: 1rem;
+    padding: 0.4em 0.8em;
+}
+/* Especificidad: 001 */
+main a {
+    overflow-wrap: break-word;
+}
+
+/* Especificidad: 001 */
+main p, main li {
+    overflow-wrap: break-word;
+}
+
+@media(min-width: 320px) and (max-width:799px){
+    /* Especificidad dentro del @media: 002 */
+    header, h1, nav{
+        display: flex; /*Redefinicion dentro de un @media -> Permitido*/
+        flex-direction: column; /*Redefinicion dentro de un @media -> Permitido*/
+        justify-content: center; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Especificidad dentro del @media: 002 */
+    p:first-child{
+        display: none;
+    }
+
+    /* Especificidad dentro del @media: 001 */
+    video{
+        width: 100%;
+        height:auto;
+    }
+
+    /* Especificidad dentro del @media: 001 */
+    audio{
+        width: 100%;
+    }
+
+    /* Especificidad dentro del @media: 002 */
+    article h2+img{
+        width: 100%; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+    main > section:nth-of-type(1) > article img{
+        width: 90%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    main > section:nth-of-type(2) > section svg{
+        width: 90%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Ocultamos la tabla grande */
+    /* Especificidad dentro del @media: 002 */
+    section table:nth-of-type(1) { /**/
+        display: none;
+    }
+
+    /* Mostramos la tabla transpuesta */
+    /* Especificidad dentro del @media: 002 */
+    section table:nth-of-type(2) { /**/
+        display: table; /*Redefinicion dentro de un @media -> Permitido*/
+        width: 100%;
+    }
+
+    /* Ajustes de celdas para evitar desbordes */
+    /* Especificidad dentro del @media: 002 */
+    th, td { /**/
+        white-space: normal; /*Redefinicion dentro de un @media -> Permitido*/
+        overflow-wrap: break-word; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Asegurar que el mapa sea responsive */
+    /* Especificidad dentro del @media: 003 */
+    main > section:nth-of-type(3) > div {
+        width: 90%;
+        margin: 0 auto;
+        height: 50vh;
+    }
+}
+
+/* Ocultar migas de navegación en móviles*/
+@media (max-width: 465px) {
+    /* Especificidad dentro del @media: 002 */
+    body > p:first-of-type {
+        display: none; /* redefinición de display */
+    }
+
+    /* Ocultamos la tabla grande */
+    /* Especificidad dentro del @media: 002 */
+    section table:nth-of-type(1) { /**/
+        display: none; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Mostramos la tabla transpuesta */
+    /* Especificidad dentro del @media: 002 */
+    section table:nth-of-type(2) { /**/
+        display: table; /*Redefinicion dentro de un @media -> Permitido*/
+        width: 100%; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Ajustes de celdas para evitar desbordes */
+    /* Especificidad dentro del @media: 002 */
+    th, td { /**/
+        white-space: normal; /*Redefinicion dentro de un @media -> Permitido*/
+        overflow-wrap: break-word; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Asegurar que el mapa sea responsive */
+    /* Especificidad dentro del @media: 002 */
+    main > section:nth-of-type(3) > div {
+        width: 90%; /*Redefinicion dentro de un @media -> Permitido*/
+        margin: 0 auto; /*Redefinicion dentro de un @media -> Permitido*/
+        height: 40vh; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Especificidad dentro del @media: 002 */
+    main > section:nth-of-type(1) > article img{
+        width: 85%; /*Redefinicion dentro de un @media -> Permitido*/
+        height: auto; /*Redefinicion dentro de un @media -> Permitido*/
+        display: block; /*Redefinicion dentro de un @media -> Permitido*/
+        margin: 0 auto; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+
+    /* Especificidad dentro del @media: 002 */
+    main > section:nth-of-type(2) > section svg{
+        width: 85%; /*Redefinicion dentro de un @media -> Permitido*/
+        height: auto; /*Redefinicion dentro de un @media -> Permitido*/
+        display: block; /*Redefinicion dentro de un @media -> Permitido*/
+        margin: 0 auto; /*Redefinicion dentro de un @media -> Permitido*/
+    }
+}
+
+@media (min-width: 800px) {
+     /* Especificidad dentro del @media: 002 */
+    header nav a {
+        font-size: 1.3em;
+    }
+}
