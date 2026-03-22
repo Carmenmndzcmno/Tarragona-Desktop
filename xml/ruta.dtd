@@ -1,0 +1,65 @@
+<!ELEMENT ruta (
+    nombreRuta,
+    tipoRuta,
+    medioTransporte,
+    fechaInicio,
+    horaInicio,
+    tiempoDuracion,
+    agenciaGestora,
+    descripcion,
+    personasAdecuadas,
+    lugarInicio,
+    coordenadasGeograficas,
+    referenciasBibliograficas,
+    recomendacion,
+    hitos
+)>
+
+<!ELEMENT nombreRuta (#PCDATA)>
+
+<!ELEMENT tipoRuta (#PCDATA)>
+
+<!ELEMENT medioTransporte (#PCDATA)>
+
+<!ELEMENT fechaInicio (#PCDATA)>
+
+<!ELEMENT tiempoDuracion (#PCDATA)>
+
+<!ELEMENT agenciaGestora (#PCDATA)>
+
+<!ELEMENT descripcion (#PCDATA)>
+
+<!ELEMENT personasAdecuadas (#PCDATA)>
+
+<!ELEMENT lugarInicio (#PCDATA)>
+
+<!ELEMENT coordenadasGeograficas (#PCDATA)>
+
+<!ELEMENT referenciasBibliograficas (referencia+)>
+<!ELEMENT referencia (#PCDATA)>
+
+<!ELEMENT recomendacion (#PCDATA)>
+
+<!ELEMENT hitos (
+    nombreHito,
+    coordenadasHito,
+    distanciaHitoAnterior,
+    galeriaFotografia,
+    galeriaVideo
+)>
+
+<!ELEMENT nombreHito (#PCDATA)>
+
+<!ELEMENT coordenadasHito (longitud, latitud, altitud)>
+<!ELEMENT longitud (#PCDATA)>
+<!ELEMENT latitud (#PCDATA)>
+<!ELEMENT altitud (#PCDATA)>
+
+<!ELEMENT distanciaHitoAnterior (#PCDATA)>
+
+<!ELEMENT galeriaFotografia (fotografia)>
+<!ELEMENT fotografia (#PCDATA)>
+
+
+<!ELEMENT galeriaVideo (video)>
+<!ELEMENT video (#PCDATA)>
