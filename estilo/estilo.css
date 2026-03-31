@@ -21,18 +21,19 @@ header a{
     text-decoration-line:none;
 }
 
-/* especificidad: 002 */
+/* especificidad: 001 */
 h1, nav{ /*Hereda "background-color" de header*/
     color: #5A1400;
 }
+
 
 /* especificidad: 002 */
 p:first-child{ /*Hereda "color","background-color","font-family" de body*/
     font-size: 0.8em; /*em es relativo*/
 }
 
-/*especificacion (0,1,2)*/
-/*Hereda de body en este caso el background*/
-header a.active {
+/* especificidad: 002 */
+/* Hereda de body el color de fondo y de nav el color de texto */
+nav a[href="index.html"] {
     color: #5A1400;
 }

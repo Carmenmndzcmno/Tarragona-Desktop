@@ -1,2 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE ruta SYSTEM "ruta.dtd">
+<!DOCTYPE rutas SYSTEM "ruta.dtd">
+
+<rutas>
+    <ruta>
+        <nombreRuta>Els Avencs de La Febro</nombreRuta>
+        <tipoRuta>Senderismo</tipoRuta>
+        <medioTransporte>A pie</medioTransporte>
+        <fechaInicio>2024-05-15</fechaInicio>
+        <horaInicio>09:00:00</horaInicio>
+        <tiempoDuracion>4 horas</tiempoDuracion>
+        <agenciaGestora>Ajuntament de La Febro</agenciaGestora>
+        <descripcion>Una ruta espectacular por las grietas naturales de La Febro, ideal para amantes de la naturaleza y la aventura.</descripcion>
+        <personasAdecuadas>Público con buena forma física, no recomendado para personas con vértigo extremo.</personasAdecuadas>
+        <lugarInicio>Pueblo de La Febro</lugarInicio>
+        <coordenadasGeograficas>
+            <longitud>1.0264</longitud>
+            <latitud>41.2828</latitud>
+            <altitud>800</altitud>
+        </coordenadasGeograficas>
+        <referenciasBibliograficas>
+            <referencia>https://es.wikipedia.org/wiki/La_Febr%C3%B3</referencia>
+            <referencia>https://www.catalunya.com/els-avencs-de-la-febro-17-16003-510</referencia>
+        </referenciasBibliograficas>
+        <recomendacion>Llevar calzado de montaña con buen agarre, suficiente agua y linterna si se desea explorar las cuevas más profundas.</recomendacion>
+        <hitos>
+            <hito>
+                <nombreHito>Entrada a los Avencs</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0270</longitud>
+                    <latitud>41.2830</latitud>
+                    <altitud>810</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>1.5 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/tarragona.mp4</video>
+                </galeriaVideo>
+            </hito>
+            <hito>
+                <nombreHito>La Gran Grieta</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0280</longitud>
+                    <latitud>41.2840</latitud>
+                    <altitud>820</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+        </hitos>
+    </ruta>
+
+    <ruta>
+        <nombreRuta>Els Gorgs de La Febró</nombreRuta>
+        <tipoRuta>Senderismo acuático</tipoRuta>
+        <medioTransporte>A pie</medioTransporte>
+        <fechaInicio>2024-06-20</fechaInicio>
+        <horaInicio>10:00:00</horaInicio>
+        <tiempoDuracion>3 horas</tiempoDuracion>
+        <agenciaGestora>Ajuntament de La Febro</agenciaGestora>
+        <descripcion>Ruta por las pozas naturales del río Siurana, ideal para el verano.</descripcion>
+        <personasAdecuadas>Familias y excursionistas en general.</personasAdecuadas>
+        <lugarInicio>La Febró</lugarInicio>
+        <coordenadasGeograficas>
+            <longitud>1.0234</longitud>
+            <latitud>41.2810</latitud>
+            <altitud>750</altitud>
+        </coordenadasGeograficas>
+        <referenciasBibliograficas>
+            <referencia>https://es.wikiloc.com/rutas-senderismo/els-gorgs-de-la-febro-123456</referencia>
+        </referenciasBibliograficas>
+        <recomendacion>Traer bañador y toalla.</recomendacion>
+        <hitos>
+            <hito>
+                <nombreHito>Primer Gorg</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0240</longitud>
+                    <latitud>41.2815</latitud>
+                    <altitud>740</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>1.0 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+        </hitos>
+    </ruta>
+
+    <ruta>
+        <nombreRuta>La Font de la Llúdriga</nombreRuta>
+        <tipoRuta>Paseo natural</tipoRuta>
+        <medioTransporte>A pie</medioTransporte>
+        <fechaInicio>2024-04-10</fechaInicio>
+        <horaInicio>11:00:00</horaInicio>
+        <tiempoDuracion>1.5 horas</tiempoDuracion>
+        <agenciaGestora>Diputació de Tarragona</agenciaGestora>
+        <descripcion>Un paseo sombreado y fresco que lleva a una de las fuentes más caudalosas de la zona.</descripcion>
+        <personasAdecuadas>Todas las edades, muy accesible.</personasAdecuadas>
+        <lugarInicio>Capafonts</lugarInicio>
+        <coordenadasGeograficas>
+            <longitud>1.0456</longitud>
+            <latitud>41.2950</latitud>
+            <altitud>720</altitud>
+        </coordenadasGeograficas>
+        <referenciasBibliograficas>
+            <referencia>https://www.muntanyesdeprades.cat/capafonts/font-lludriga</referencia>
+        </referenciasBibliograficas>
+        <recomendacion>Disfrutar de la paz del bosque de ribera.</recomendacion>
+        <hitos>
+            <hito>
+                <nombreHito>La Fuente</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0460</longitud>
+                    <latitud>41.2955</latitud>
+                    <altitud>715</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.8 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Movil.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+        </hitos>
+    </ruta>
+</rutas>
