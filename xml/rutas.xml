@@ -6,8 +6,6 @@
         <nombreRuta>Els Avencs de La Febro</nombreRuta>
         <tipoRuta>Senderismo</tipoRuta>
         <medioTransporte>A pie</medioTransporte>
-        <fechaInicio>2024-05-15</fechaInicio>
-        <horaInicio>09:00:00</horaInicio>
         <tiempoDuracion>4 horas</tiempoDuracion>
         <agenciaGestora>Ajuntament de La Febro</agenciaGestora>
         <descripcion>Una ruta espectacular por las grietas naturales de La Febro, ideal para amantes de la naturaleza y la aventura.</descripcion>
@@ -53,14 +51,14 @@
                 <galeriaVideo/>
             </hito>
         </hitos>
+        <planimetria></planimetria>
+        <altimetria></altimetria>
     </ruta>
 
     <ruta>
         <nombreRuta>Els Gorgs de La Febró</nombreRuta>
         <tipoRuta>Senderismo acuático</tipoRuta>
         <medioTransporte>A pie</medioTransporte>
-        <fechaInicio>2024-06-20</fechaInicio>
-        <horaInicio>10:00:00</horaInicio>
         <tiempoDuracion>3 horas</tiempoDuracion>
         <agenciaGestora>Ajuntament de La Febro</agenciaGestora>
         <descripcion>Ruta por las pozas naturales del río Siurana, ideal para el verano.</descripcion>
@@ -90,14 +88,14 @@
                 <galeriaVideo/>
             </hito>
         </hitos>
+        <planimetria></planimetria>
+        <altimetria></altimetria>
     </ruta>
 
     <ruta>
         <nombreRuta>La Font de la Llúdriga</nombreRuta>
         <tipoRuta>Paseo natural</tipoRuta>
         <medioTransporte>A pie</medioTransporte>
-        <fechaInicio>2024-04-10</fechaInicio>
-        <horaInicio>11:00:00</horaInicio>
         <tiempoDuracion>1.5 horas</tiempoDuracion>
         <agenciaGestora>Diputació de Tarragona</agenciaGestora>
         <descripcion>Un paseo sombreado y fresco que lleva a una de las fuentes más caudalosas de la zona.</descripcion>
@@ -127,5 +125,7 @@
                 <galeriaVideo/>
             </hito>
         </hitos>
+        <planimetria></planimetria>
+        <altimetria></altimetria>
     </ruta>
 </rutas>

@@ -4,8 +4,8 @@
     nombreRuta,
     tipoRuta,
     medioTransporte,
-    fechaInicio,
-    horaInicio,
+    fechaInicio?,
+    horaInicio?,
     tiempoDuracion,
     agenciaGestora,
     descripcion,
@@ -14,7 +14,9 @@
     coordenadasGeograficas,
     referenciasBibliograficas,
     recomendacion,
-    hitos
+    hitos,
+    planimetria,
+    altimetria
 )>
 
 <!ELEMENT nombreRuta (#PCDATA)>
@@ -59,3 +61,6 @@
 
 <!ELEMENT galeriaVideo (video*)>
 <!ELEMENT video (#PCDATA)>
+
+<!ELEMENT planimetria (#PCDATA)>
+<!ELEMENT altimetria (#PCDATA)>
