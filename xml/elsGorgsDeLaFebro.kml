@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <Placemark>
+      <name>Els Gorgs de La Febró</name>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates>
+          1.0234,41.2810,750
+          1.0228,41.2807,756
+          1.0235,41.2811,748
+          1.0242,41.2816,742
+          1.0249,41.2820,738
+          1.0256,41.2825,734
+          1.0261,41.2829,731
+          1.0268,41.2834,728
+          1.0273,41.2837,726
+          1.0280,41.2841,744
+          1.0233,41.2810,752
+</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>

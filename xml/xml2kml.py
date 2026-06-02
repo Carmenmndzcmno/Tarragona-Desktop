@@ -47,6 +47,7 @@ def generaKML(archivo_xml):
     try:
         tree = ET.parse(archivo_xml)
         root = tree.getroot()
+        directorio_salida = os.path.dirname(os.path.abspath(archivo_xml))
         
         # El archivo rutas.xml contiene múltiples elementos <ruta>
         for ruta in root.findall('ruta'):
@@ -55,6 +56,7 @@ def generaKML(archivo_xml):
                 continue
             
             nombre_ruta = nombre_ruta_elem.text.strip()
+            planimetria_elem = ruta.find('planimetria')
             coordenadas = []
             
             # 1. Coordenadas de inicio de la ruta (coordenadasGeograficas)
@@ -79,10 +81,14 @@ def generaKML(archivo_xml):
             if coordenadas:
                 kml = Kml()
                 kml.add_route(nombre_ruta, coordenadas)
-                # El nombre del archivo debe ser ruta[Nombre Ruta].kml
-                nombre_kml = f"ruta{nombre_ruta}.kml"
-                kml.escribir(nombre_kml)
-                print(f"Archivo generado: {nombre_kml}")
+                # El nombre del archivo generado será el indicado en <planimetria>
+                if planimetria_elem is not None and planimetria_elem.text:
+                    nombre_kml = planimetria_elem.text.strip()
+                else:
+                    nombre_kml = f"ruta{nombre_ruta}.kml"
+                ruta_kml = os.path.join(directorio_salida, os.path.basename(nombre_kml))
+                kml.escribir(ruta_kml)
+                print(f"Archivo generado: {ruta_kml}")
             else:
                 print(f"Advertencia: No se encontraron coordenadas para la ruta '{nombre_ruta}'")
 
