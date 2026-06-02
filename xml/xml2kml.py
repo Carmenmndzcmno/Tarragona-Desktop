@@ -1,156 +1,101 @@
 import xml.etree.ElementTree as ET
-import sys
+import os
 
-class Kml(object):
+class Kml:
     """
-    Genera archivo KML con puntos y líneas
-    @version 1.1
+    Clase para generar archivos KML (Keyhole Markup Language)
     """
     def __init__(self):
-        """
-        Crea el elemento raíz y el espacio de nombres
-        """
-        self.raiz = ET.Element('kml', xmlns="http://www.opengis.net/kml/2.2")
-        self.doc = ET.SubElement(self.raiz,'Document')
+        self.raiz = ET.Element("kml", xmlns="http://www.opengis.net/kml/2.2")
+        self.doc = ET.SubElement(self.raiz, "Document")
 
-    def addPlacemark(self,nombre,descripcion,long,lat,alt, modoAltitud):
+    def add_route(self, nombre, coordenadas):
         """
-        Añade un elemento <Placemark> con puntos <Point>
+        Añade una ruta (LineString) al documento KML
         """
-        pm = ET.SubElement(self.doc,'Placemark')
-        ET.SubElement(pm,'name').text = nombre
-        ET.SubElement(pm,'description').text = descripcion
-        punto = ET.SubElement(pm,'Point')
-        ET.SubElement(punto,'coordinates').text = '{},{},{}'.format(long,lat,alt)
-        ET.SubElement(punto,'altitudeMode').text = modoAltitud
+        placemark = ET.SubElement(self.doc, "Placemark")
+        ET.SubElement(placemark, "name").text = nombre
+        
+        line_string = ET.SubElement(placemark, "LineString")
+        ET.SubElement(line_string, "extrude").text = "1"
+        ET.SubElement(line_string, "tessellate").text = "1"
+        ET.SubElement(line_string, "altitudeMode").text = "relativeToGround"
+        
+        # Formato de coordenadas: longitud,latitud,altitud
+        coords_text = "\n"
+        for lon, lat, alt in coordenadas:
+            coords_text += f"          {lon},{lat},{alt}\n"
+        
+        ET.SubElement(line_string, "coordinates").text = coords_text
 
-    def addLineString(self,nombre,extrude,tesela, listaCoordenadas, modoAltitud='clampToGround', color=None, ancho=None):
+    def escribir(self, nombre_archivo):
         """
-        Añade un elemento <Placemark> con líneas <LineString>
-        listaCoordenadas: string con "lon,lat,alt\nlon,lat,alt\n..."
-        """
-        pm = ET.SubElement(self.doc,'Placemark')
-        if nombre is not None:
-            ET.SubElement(pm,'name').text = str(nombre)
-        ls = ET.SubElement(pm, 'LineString')
-        ET.SubElement(ls,'extrude').text = str(extrude)
-        ET.SubElement(ls,'tessellation').text = str(tesela)
-        ET.SubElement(ls,'coordinates').text = listaCoordenadas
-        ET.SubElement(ls,'altitudeMode').text = modoAltitud
-
-        if color is not None or ancho is not None:
-            estilo = ET.SubElement(pm, 'Style')
-            linea = ET.SubElement(estilo, 'LineStyle')
-            if color is not None:
-                ET.SubElement(linea, 'color').text = str(color)
-            if ancho is not None:
-                ET.SubElement(linea, 'width').text = str(ancho)
-
-    def escribir(self,nombreArchivoKML):
-        """
-        Escribe el archivo KML con declaración y codificación
+        Escribe el contenido KML a un archivo
         """
         arbol = ET.ElementTree(self.raiz)
-        # Introduce indentación y saltos de línea si está disponible (Py3.9+)
+        # Intentamos usar indent si está disponible (Python 3.9+)
         try:
             ET.indent(arbol, space="  ")
-        except Exception:
+        except AttributeError:
             pass
-        arbol.write(nombreArchivoKML, encoding='utf-8', xml_declaration=True)
+        arbol.write(nombre_archivo, encoding="utf-8", xml_declaration=True)
 
-    def ver(self):
-        """
-        Muestra el archivo KML. Se utiliza para depurar
-        """
-        print("\nElemento raiz = ", self.raiz.tag)
-
-        if self.raiz.text != None:
-            print("Contenido = "    , self.raiz.text.strip('\n'))
-        else:
-            print("Contenido = "    , self.raiz.text)
-
-        print("Atributos = "    , self.raiz.attrib)
-
-        # Recorrido de los elementos del árbol
-        for hijo in self.raiz.findall('.//'):
-            print("\nElemento = " , hijo.tag)
-            if hijo.text != None:
-                print("Contenido = ", hijo.text.strip('\n'))
-            else:
-                print("Contenido = ", hijo.text)
-            print("Atributos = ", hijo.attrib)
-
-# Sección que transforma circuitoEsquema.xml en sintaxis KML.
-def toKML(archivoXML):
-   
-    tree = ET.parse(archivoXML)
-    
-    root = tree.getroot()
-    namespace = {'ns': 'http://www.uniovi.es'}
-
-    
-    origen = root.find('ns:puntoOrigen', namespace)
-    puntos_coords = []
-    kml_coordenadas = ""
-    
-    if origen is not None:
-        lon_o = origen.get('longitud')
-        lat_o = origen.get('latitud')
-        alt_o = origen.get('altitud')
-        nombre_origen = origen.text.strip() if origen.text else 'puntoOrigen'
-        puntos_coords.append((float(lon_o), float(lat_o), float(alt_o), nombre_origen, 'Punto origen'))
+def generaKML(archivo_xml):
+    """
+    Lee el archivo XML de rutas y genera un archivo KML por cada ruta
+    """
+    try:
+        tree = ET.parse(archivo_xml)
+        root = tree.getroot()
         
-    puntosAnonimos = root.findall('ns:puntoAnonimo', namespace)
-    for pA in puntosAnonimos:
-        coords_elem = pA.find('ns:coordenadasGeograficas', namespace)
-        sector = pA.find('ns:sector', namespace)
-        nombre = None
-        if sector is not None and sector.text:
-            nombre = f"Sector {sector.text.strip()}"
-        else:
-            nombre = "puntoAnonimo"
-        if coords_elem is not None:
-            lon = coords_elem.get('longitud')
-            lat = coords_elem.get('latitud')
-            alt = coords_elem.get('altitud')
-            puntos_coords.append((float(lon), float(lat), float(alt), nombre, 'Punto anónimo'))
+        # El archivo rutas.xml contiene múltiples elementos <ruta>
+        for ruta in root.findall('ruta'):
+            nombre_ruta_elem = ruta.find('nombreRuta')
+            if nombre_ruta_elem is None:
+                continue
             
-    for (lon, lat, alt, nombre, desc) in puntos_coords:
-        kml_coordenadas += "{},{},{}\n".format(lon, lat, alt)
+            nombre_ruta = nombre_ruta_elem.text.strip()
+            coordenadas = []
+            
+            # 1. Coordenadas de inicio de la ruta (coordenadasGeograficas)
+            inicio = ruta.find('coordenadasGeograficas')
+            if inicio is not None:
+                lon = inicio.find('longitud').text.strip()
+                lat = inicio.find('latitud').text.strip()
+                alt = inicio.find('altitud').text.strip()
+                coordenadas.append((lon, lat, alt))
+            
+            # 2. Coordenadas de cada hito (hitos/hito/coordenadasHito)
+            hitos_elem = ruta.find('hitos')
+            if hitos_elem is not None:
+                for hito in hitos_elem.findall('hito'):
+                    coords_hito = hito.find('coordenadasHito')
+                    if coords_hito is not None:
+                        lon = coords_hito.find('longitud').text.strip()
+                        lat = coords_hito.find('latitud').text.strip()
+                        alt = coords_hito.find('altitud').text.strip()
+                        coordenadas.append((lon, lat, alt))
+            
+            if coordenadas:
+                kml = Kml()
+                kml.add_route(nombre_ruta, coordenadas)
+                # El nombre del archivo debe ser ruta[Nombre Ruta].kml
+                nombre_kml = f"ruta{nombre_ruta}.kml"
+                kml.escribir(nombre_kml)
+                print(f"Archivo generado: {nombre_kml}")
+            else:
+                print(f"Advertencia: No se encontraron coordenadas para la ruta '{nombre_ruta}'")
 
-    if puntos_coords:
-        lon_o, lat_o, alt_o, _, _ = puntos_coords[0]
-        kml_coordenadas += "{},{},{}\n".format(lon_o, lat_o, alt_o)
+    except Exception as e:
+        print(f"Error al procesar el XML: {e}")
 
-
-    kml = Kml()
+if __name__ == "__main__":
+    # Localización del archivo XML
+    xml_file = 'xml/rutas.xml'
+    if not os.path.exists(xml_file):
+        xml_file = 'rutas.xml' # Por si acaso está en el mismo directorio
     
-    for (lon, lat, alt, nombre, desc) in puntos_coords:
-        kml.addPlacemark(nombre=nombre,
-                         descripcion=desc,
-                         long=lon,
-                         lat=lat,
-                         alt=alt,
-                         modoAltitud='absolute')
-
-    kml.addLineString(
-        nombre = root.get('nombre', 'Circuito'),
-        extrude = '0',
-        tesela = '1',
-        listaCoordenadas = kml_coordenadas.strip(),
-        modoAltitud = 'absolute',
-        color = 'ffff0000',  # azul en formato aabbggrr
-        ancho = '4'
-    )
-
-    salida = 'circuito.kml'
-    kml.escribir(salida)
-    print('Archivo generado ->', salida)
-
-if __name__ == '__main__':
-    # Igual que tu versión original: pedir nombre de fichero XML
-    fichero = input("Introduzca nombre fichero XML: ").strip()
-    if not fichero:
-        print("No has introducido nombre de fichero. Abortando.")
-        sys.exit(1)
-    toKML(fichero)
+    if os.path.exists(xml_file):
+        generaKML(xml_file)
+    else:
+        print(f"Error: No se pudo encontrar el archivo {xml_file}")

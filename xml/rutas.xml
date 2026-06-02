@@ -22,31 +22,149 @@
         </referenciasBibliograficas>
         <recomendacion>Llevar calzado de montaña con buen agarre, suficiente agua y linterna si se desea explorar las cuevas más profundas.</recomendacion>
         <hitos>
+
             <hito>
-                <nombreHito>Entrada a los Avencs</nombreHito>
+                <nombreHito>Aparcamiento de La Febró</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0270</longitud>
-                    <latitud>41.2830</latitud>
-                    <altitud>810</altitud>
+                    <longitud>1.0098</longitud>
+                    <latitud>41.2769</latitud>
+                    <altitud>948</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>1.5 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0 km</distanciaHitoAnterior>
                 <galeriaFotografia>
-                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                    <fotografia>multimedia/aparcamiento.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Inicio Sendero Bosque</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0107</longitud>
+                    <latitud>41.2775</latitud>
+                    <altitud>956</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/bosque.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Mirador de Les Muntanyes</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0115</longitud>
+                    <latitud>41.2782</latitud>
+                    <altitud>968</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/mirador.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo>
-                    <video>multimedia/tarragona.mp4</video>
+                    <video>multimedia/mirador.mp4</video>
                 </galeriaVideo>
             </hito>
+
+            <hito>
+                <nombreHito>Entrada dels Avencs</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0129</longitud>
+                    <latitud>41.2790</latitud>
+                    <altitud>973</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.7 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/entrada-avencs.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Pasillo de Roca</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0134</longitud>
+                    <latitud>41.2792</latitud>
+                    <altitud>969</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/pasillo-roca.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Cova Gran</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0139</longitud>
+                    <latitud>41.2795</latitud>
+                    <altitud>964</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/cova-gran.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/cova.mp4</video>
+                </galeriaVideo>
+            </hito>
+
+            <hito>
+                <nombreHito>Zona Estrecha de la Grieta</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0142</longitud>
+                    <latitud>41.2797</latitud>
+                    <altitud>972</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/grieta-estrecha.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
             <hito>
                 <nombreHito>La Gran Grieta</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0280</longitud>
-                    <latitud>41.2840</latitud>
-                    <altitud>820</altitud>
+                    <longitud>1.0148</longitud>
+                    <latitud>41.2800</latitud>
+                    <altitud>981</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/gran-grieta.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/grieta.mp4</video>
+                </galeriaVideo>
+            </hito>
+
+            <hito>
+                <nombreHito>Salida Superior dels Avencs</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0155</longitud>
+                    <latitud>41.2806</latitud>
+                    <altitud>990</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
                 <galeriaFotografia>
-                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
+                    <fotografia>multimedia/salida-superior.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Regreso por el Sendero Forestal</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0131</longitud>
+                    <latitud>41.2784</latitud>
+                    <altitud>960</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>1.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/regreso.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
@@ -74,19 +192,155 @@
         </referenciasBibliograficas>
         <recomendacion>Traer bañador y toalla.</recomendacion>
         <hitos>
+
             <hito>
-                <nombreHito>Primer Gorg</nombreHito>
+                <nombreHito>Inicio Ruta La Febró</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0240</longitud>
-                    <latitud>41.2815</latitud>
-                    <altitud>740</altitud>
+                    <longitud>1.0228</longitud>
+                    <latitud>41.2807</latitud>
+                    <altitud>756</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>1.0 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0 km</distanciaHitoAnterior>
                 <galeriaFotografia>
-                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                    <fotografia>multimedia/inicio-ruta.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
+
+            <hito>
+                <nombreHito>Sendero del Bosque de Ribera</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0235</longitud>
+                    <latitud>41.2811</latitud>
+                    <altitud>748</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/bosque-ribera.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Primer Gorg</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0242</longitud>
+                    <latitud>41.2816</latitud>
+                    <altitud>742</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/primer-gorg.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/gorg1.mp4</video>
+                </galeriaVideo>
+            </hito>
+
+            <hito>
+                <nombreHito>Pequeña Cascada</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0249</longitud>
+                    <latitud>41.2820</latitud>
+                    <altitud>738</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/cascada.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Gorg Central</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0256</longitud>
+                    <latitud>41.2825</latitud>
+                    <altitud>734</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/gorg-central.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/gorg-central.mp4</video>
+                </galeriaVideo>
+            </hito>
+
+            <hito>
+                <nombreHito>Paso entre Rocas</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0261</longitud>
+                    <latitud>41.2829</latitud>
+                    <altitud>731</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/paso-rocas.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Gran Gorg del Siurana</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0268</longitud>
+                    <latitud>41.2834</latitud>
+                    <altitud>728</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/gran-gorg.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/gran-gorg.mp4</video>
+                </galeriaVideo>
+            </hito>
+
+            <hito>
+                <nombreHito>Zona de Baño Natural</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0273</longitud>
+                    <latitud>41.2837</latitud>
+                    <altitud>726</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/zona-bano.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Mirador del Barranco</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0280</longitud>
+                    <latitud>41.2841</latitud>
+                    <altitud>744</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.7 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/mirador-barranco.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo>
+                    <video>multimedia/mirador.mp4</video>
+                </galeriaVideo>
+            </hito>
+
+            <hito>
+                <nombreHito>Regreso a La Febró</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0233</longitud>
+                    <latitud>41.2810</latitud>
+                    <altitud>752</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>1.8 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/regreso-febro.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
         </hitos>
         <planimetria></planimetria>
         <altimetria></altimetria>
