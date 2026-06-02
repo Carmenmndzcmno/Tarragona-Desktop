@@ -223,8 +223,8 @@
         <personasAdecuadas>Familias y excursionistas en general.</personasAdecuadas>
         <lugarInicio>La Febró</lugarInicio>
         <coordenadasGeograficas>
-            <longitud>1.0234</longitud>
-            <latitud>41.2810</latitud>
+            <longitud>0.9832944</longitud>
+            <latitud>41.2617889</latitud>
             <altitud>750</altitud>
         </coordenadasGeograficas>
         <referenciasBibliograficas>
@@ -234,10 +234,10 @@
         <hitos>
 
             <hito>
-                <nombreHito>Inicio Ruta La Febró</nombreHito>
+                <nombreHito>Zona de aparcamiento cerca de Mas Dels Frares</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0228</longitud>
-                    <latitud>41.2807</latitud>
+                    <longitud>0.9832944</longitud>
+                    <latitud>41.2617889</latitud>
                     <altitud>756</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0 km</distanciaHitoAnterior>
@@ -248,10 +248,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Sendero del Bosque de Ribera</nombreHito>
+                <nombreHito>Dirección a Arbolí</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0235</longitud>
-                    <latitud>41.2811</latitud>
+                    <longitud>0.9784167</longitud>
+                    <latitud>41.2592083</latitud>
                     <altitud>748</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
@@ -262,10 +262,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Primer Gorg</nombreHito>
+                <nombreHito>Barranc del Gorg</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0242</longitud>
-                    <latitud>41.2816</latitud>
+                    <longitud>0.9766194</longitud>
+                    <latitud>41.2588194</latitud>
                     <altitud>742</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
@@ -278,10 +278,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Pequeña Cascada</nombreHito>
+                <nombreHito>Primer gorg de La Febró</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0249</longitud>
-                    <latitud>41.2820</latitud>
+                    <longitud>0.9759250</longitud>
+                    <latitud>41.2596222</latitud>
                     <altitud>738</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
@@ -292,10 +292,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Gorg Central</nombreHito>
+                <nombreHito>Vista del Barranc del Gorg</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0256</longitud>
-                    <latitud>41.2825</latitud>
+                    <longitud>0.9759611</longitud>
+                    <latitud>41.2617917</latitud>
                     <altitud>734</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
@@ -308,10 +308,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Paso entre Rocas</nombreHito>
+                <nombreHito>Sendero</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0261</longitud>
-                    <latitud>41.2829</latitud>
+                    <longitud>0.9762806</longitud>
+                    <latitud>41.2639250</latitud>
                     <altitud>731</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
@@ -322,10 +322,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Gran Gorg del Siurana</nombreHito>
+                <nombreHito>Sendero</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0268</longitud>
-                    <latitud>41.2834</latitud>
+                    <longitud>0.9759250</longitud>
+                    <latitud>41.2649361</latitud>
                     <altitud>728</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
@@ -338,45 +338,15 @@
             </hito>
 
             <hito>
-                <nombreHito>Zona de Baño Natural</nombreHito>
+                <nombreHito>La Gorguina</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0273</longitud>
-                    <latitud>41.2837</latitud>
+                    <longitud>0.9747833</longitud>
+                    <latitud>41.2654917</latitud>
                     <altitud>726</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/zona-bano.jpg</fotografia>
-                </galeriaFotografia>
-                <galeriaVideo/>
-            </hito>
-
-            <hito>
-                <nombreHito>Mirador del Barranco</nombreHito>
-                <coordenadasHito>
-                    <longitud>1.0280</longitud>
-                    <latitud>41.2841</latitud>
-                    <altitud>744</altitud>
-                </coordenadasHito>
-                <distanciaHitoAnterior>0.7 km</distanciaHitoAnterior>
-                <galeriaFotografia>
-                    <fotografia>multimedia/mirador-barranco.jpg</fotografia>
-                </galeriaFotografia>
-                <galeriaVideo>
-                    <video>multimedia/mirador.mp4</video>
-                </galeriaVideo>
-            </hito>
-
-            <hito>
-                <nombreHito>Regreso a La Febró</nombreHito>
-                <coordenadasHito>
-                    <longitud>1.0233</longitud>
-                    <latitud>41.2810</latitud>
-                    <altitud>752</altitud>
-                </coordenadasHito>
-                <distanciaHitoAnterior>1.8 km</distanciaHitoAnterior>
-                <galeriaFotografia>
-                    <fotografia>multimedia/regreso-febro.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
@@ -396,8 +366,8 @@
         <personasAdecuadas>Todas las edades, muy accesible.</personasAdecuadas>
         <lugarInicio>Capafonts</lugarInicio>
         <coordenadasGeograficas>
-            <longitud>1.0456</longitud>
-            <latitud>41.2950</latitud>
+            <longitud>1.0297389</longitud>
+            <latitud>41.2944278</latitud>
             <altitud>720</altitud>
         </coordenadasGeograficas>
         <referenciasBibliograficas>
@@ -406,10 +376,10 @@
         <recomendacion>Disfrutar de la paz del bosque de ribera.</recomendacion>
         <hitos>
             <hito>
-                <nombreHito>Aparcamiento de Capafonts</nombreHito>
+                <nombreHito>Inicio del camino</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0448</longitud>
-                    <latitud>41.2958</latitud>
+                    <longitud>1.0297389</longitud>
+                    <latitud>41.2944278</latitud>
                     <altitud>728</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0 km</distanciaHitoAnterior>
@@ -420,10 +390,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Salida de Capafonts</nombreHito>
+                <nombreHito>Intersección</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0452</longitud>
-                    <latitud>41.2954</latitud>
+                    <longitud>1.0280861</longitud>
+                    <latitud>41.2934583</latitud>
                     <altitud>724</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
@@ -434,10 +404,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Curva señalizada bajo el pueblo</nombreHito>
+                <nombreHito>Vista de Capafonts</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0457</longitud>
-                    <latitud>41.2949</latitud>
+                    <longitud>1.0294611</longitud>
+                    <latitud>41.2931722</latitud>
                     <altitud>719</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
@@ -448,10 +418,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Pista forestal inicial</nombreHito>
+                <nombreHito>Vista de Capafonts</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0463</longitud>
-                    <latitud>41.2946</latitud>
+                    <longitud>1.0312583</longitud>
+                    <latitud>41.2919972</latitud>
                     <altitud>714</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
@@ -462,10 +432,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Desvío al sendero del Brugent</nombreHito>
+                <nombreHito>Camino del dique</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0469</longitud>
-                    <latitud>41.2948</latitud>
+                    <longitud>1.0338639</longitud>
+                    <latitud>41.2893222</latitud>
                     <altitud>711</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
@@ -476,10 +446,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Les Tosques de Capafonts</nombreHito>
+                <nombreHito>Dique</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0476</longitud>
-                    <latitud>41.2952</latitud>
+                    <longitud>1.0360306</longitud>
+                    <latitud>41.2887833</latitud>
                     <altitud>708</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
@@ -490,10 +460,10 @@
             </hito>
 
             <hito>
-                <nombreHito>Sendero junto al Riu Brugent</nombreHito>
+                <nombreHito>Les tosques</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0468</longitud>
-                    <latitud>41.2958</latitud>
+                    <longitud>1.0374222</longitud>
+                    <latitud>41.2881389</latitud>
                     <altitud>710</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
@@ -504,43 +474,15 @@
             </hito>
 
             <hito>
-                <nombreHito>La Font de la Llúdriga</nombreHito>
+                <nombreHito>Font de la Llúdriga</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0460</longitud>
-                    <latitud>41.2955</latitud>
+                    <longitud>1.0400583</longitud>
+                    <latitud>41.2866194</latitud>
                     <altitud>715</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/imagen01.jpg</fotografia>
-                </galeriaFotografia>
-                <galeriaVideo/>
-            </hito>
-
-            <hito>
-                <nombreHito>Regreso por Les Tosques</nombreHito>
-                <coordenadasHito>
-                    <longitud>1.0474</longitud>
-                    <latitud>41.2951</latitud>
-                    <altitud>708</altitud>
-                </coordenadasHito>
-                <distanciaHitoAnterior>0.7 km</distanciaHitoAnterior>
-                <galeriaFotografia>
-                    <fotografia>multimedia/imagen01Movil.jpg</fotografia>
-                </galeriaFotografia>
-                <galeriaVideo/>
-            </hito>
-
-            <hito>
-                <nombreHito>Entrada de nuevo a Capafonts</nombreHito>
-                <coordenadasHito>
-                    <longitud>1.0454</longitud>
-                    <latitud>41.2956</latitud>
-                    <altitud>723</altitud>
-                </coordenadasHito>
-                <distanciaHitoAnterior>1.0 km</distanciaHitoAnterior>
-                <galeriaFotografia>
-                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
