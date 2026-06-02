@@ -169,8 +169,8 @@
                 <galeriaVideo/>
             </hito>
         </hitos>
-        <planimetria></planimetria>
-        <altimetria></altimetria>
+        <planimetria>elsAvencsDeLaFebro.kml</planimetria>
+        <altimetria>elsAvencsDeLaFebro.svg</altimetria>
     </ruta>
 
     <ruta>
@@ -342,8 +342,8 @@
             </hito>
 
         </hitos>
-        <planimetria></planimetria>
-        <altimetria></altimetria>
+        <planimetria>elsGorgsDeLaFebro.kml</planimetria>
+        <altimetria>elsGorgsDeLaFebro.svg</altimetria>
     </ruta>
 
     <ruta>
@@ -366,20 +366,146 @@
         <recomendacion>Disfrutar de la paz del bosque de ribera.</recomendacion>
         <hitos>
             <hito>
-                <nombreHito>La Fuente</nombreHito>
+                <nombreHito>Aparcamiento de Capafonts</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0460</longitud>
-                    <latitud>41.2955</latitud>
-                    <altitud>715</altitud>
+                    <longitud>1.0448</longitud>
+                    <latitud>41.2958</latitud>
+                    <altitud>728</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.8 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Salida de Capafonts</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0452</longitud>
+                    <latitud>41.2954</latitud>
+                    <altitud>724</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Curva señalizada bajo el pueblo</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0457</longitud>
+                    <latitud>41.2949</latitud>
+                    <altitud>719</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/imagen01Movil.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
+
+            <hito>
+                <nombreHito>Pista forestal inicial</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0463</longitud>
+                    <latitud>41.2946</latitud>
+                    <altitud>714</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Desvío al sendero del Brugent</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0469</longitud>
+                    <latitud>41.2948</latitud>
+                    <altitud>711</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Les Tosques de Capafonts</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0476</longitud>
+                    <latitud>41.2952</latitud>
+                    <altitud>708</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Movil.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Sendero junto al Riu Brugent</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0468</longitud>
+                    <latitud>41.2958</latitud>
+                    <altitud>710</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>La Font de la Llúdriga</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0460</longitud>
+                    <latitud>41.2955</latitud>
+                    <altitud>715</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Regreso por Les Tosques</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0474</longitud>
+                    <latitud>41.2951</latitud>
+                    <altitud>708</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.7 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Movil.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+
+            <hito>
+                <nombreHito>Entrada de nuevo a Capafonts</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0454</longitud>
+                    <latitud>41.2956</latitud>
+                    <altitud>723</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>1.0 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/imagen01Tablet.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
         </hitos>
-        <planimetria></planimetria>
-        <altimetria></altimetria>
+        <planimetria>laFontDeLaLludriga.kml</planimetria>
+        <altimetria>laFontDeLaLludriga.svg</altimetria>
     </ruta>
 </rutas>
