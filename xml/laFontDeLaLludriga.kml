@@ -4,21 +4,21 @@
     <Placemark>
       <name>La Font de la Llúdriga</name>
       <LineString>
-        <extrude>1</extrude>
+        <extrude>0</extrude>
         <tessellate>1</tessellate>
-        <altitudeMode>relativeToGround</altitudeMode>
+        <altitudeMode>clampToGround</altitudeMode>
         <coordinates>
-          1.0456,41.2950,720
-          1.0448,41.2958,728
-          1.0452,41.2954,724
-          1.0457,41.2949,719
-          1.0463,41.2946,714
-          1.0469,41.2948,711
-          1.0476,41.2952,708
-          1.0468,41.2958,710
-          1.0460,41.2955,715
-          1.0474,41.2951,708
-          1.0454,41.2956,723
+          1.0456,41.2950
+          1.0448,41.2958
+          1.0452,41.2954
+          1.0457,41.2949
+          1.0463,41.2946
+          1.0469,41.2948
+          1.0476,41.2952
+          1.0468,41.2958
+          1.0460,41.2955
+          1.0474,41.2951
+          1.0454,41.2956
 </coordinates>
       </LineString>
     </Placemark>

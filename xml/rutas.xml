@@ -12,9 +12,9 @@
         <personasAdecuadas>Público con buena forma física, no recomendado para personas con vértigo extremo.</personasAdecuadas>
         <lugarInicio>Pueblo de La Febro</lugarInicio>
         <coordenadasGeograficas>
-            <longitud>1.0264</longitud>
-            <latitud>41.2828</latitud>
-            <altitud>800</altitud>
+            <longitud>1.0305944</longitud>
+            <latitud>41.2536806</latitud>
+            <altitud>990</altitud>
         </coordenadasGeograficas>
         <referenciasBibliograficas>
             <referencia>https://es.wikipedia.org/wiki/La_Febr%C3%B3</referencia>
@@ -22,13 +22,12 @@
         </referenciasBibliograficas>
         <recomendacion>Llevar calzado de montaña con buen agarre, suficiente agua y linterna si se desea explorar las cuevas más profundas.</recomendacion>
         <hitos>
-
             <hito>
-                <nombreHito>Aparcamiento de La Febró</nombreHito>
+                <nombreHito>Refugio de La Mussara</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0098</longitud>
-                    <latitud>41.2769</latitud>
-                    <altitud>948</altitud>
+                    <longitud>1.0305944</longitud>
+                    <latitud>41.2536806</latitud>
+                    <altitud>990</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0 km</distanciaHitoAnterior>
                 <galeriaFotografia>
@@ -36,29 +35,40 @@
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
-
             <hito>
-                <nombreHito>Inicio Sendero Bosque</nombreHito>
+                <nombreHito>Intersección Dirección Mussara</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0107</longitud>
-                    <latitud>41.2775</latitud>
-                    <altitud>956</altitud>
+                    <longitud>1.0307694</longitud>
+                    <latitud>41.2534889</latitud>
+                    <altitud>992</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0.1 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/bosque.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
-
             <hito>
-                <nombreHito>Mirador de Les Muntanyes</nombreHito>
+                <nombreHito>Casa Cal Piano</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0115</longitud>
-                    <latitud>41.2782</latitud>
-                    <altitud>968</altitud>
+                    <longitud>1.0298056</longitud>
+                    <latitud>41.2526028</latitud>
+                    <altitud>994</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/bosque.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+            <hito>
+                <nombreHito>Iglesia de San Salvador de la Mussara</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0282722</longitud>
+                    <latitud>41.2523222</latitud>
+                    <altitud>995</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/mirador.jpg</fotografia>
                 </galeriaFotografia>
@@ -66,27 +76,51 @@
                     <video>multimedia/mirador.mp4</video>
                 </galeriaVideo>
             </hito>
-
             <hito>
-                <nombreHito>Entrada dels Avencs</nombreHito>
+                <nombreHito>Refugio de Les Airasses</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0129</longitud>
-                    <latitud>41.2790</latitud>
-                    <altitud>973</altitud>
+                    <longitud>1.0287417</longitud>
+                    <latitud>41.2514583</latitud>
+                    <altitud>998</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.7 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0.1 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/entrada-avencs.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
-
             <hito>
-                <nombreHito>Pasillo de Roca</nombreHito>
+                <nombreHito>Señal Dirección Els Avencs</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0134</longitud>
-                    <latitud>41.2792</latitud>
-                    <altitud>969</altitud>
+                    <longitud>1.0277333</longitud>
+                    <latitud>41.2520556</latitud>
+                    <altitud>990</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.1 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/entrada-avencs.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+            <hito>
+                <nombreHito>Vista panorámica</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0258611</longitud>
+                    <latitud>41.2526944</latitud>
+                    <altitud>985</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/mirador.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+            <hito>
+                <nombreHito>Aljibe de la Mussara</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0245444</longitud>
+                    <latitud>41.2542694</latitud>
+                    <altitud>991</altitud>
                 </coordenadasHito>
                 <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
                 <galeriaFotografia>
@@ -94,15 +128,53 @@
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
-
             <hito>
-                <nombreHito>Cova Gran</nombreHito>
+                <nombreHito>Señal Dirección Els Avencs</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0139</longitud>
-                    <latitud>41.2795</latitud>
-                    <altitud>964</altitud>
+                    <longitud>1.0239750</longitud>
+                    <latitud>41.2547833</latitud>
+                    <altitud>990</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.3 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0.1 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/pasillo-roca.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+            <hito>
+                <nombreHito>Carretera</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0269639</longitud>
+                    <latitud>41.2567444</latitud>
+                    <altitud>980</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/regreso.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+            <hito>
+                <nombreHito>Sendero</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0256611</longitud>
+                    <latitud>41.2576083</latitud>
+                    <altitud>975</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
+                <galeriaFotografia>
+                    <fotografia>multimedia/bosque.jpg</fotografia>
+                </galeriaFotografia>
+                <galeriaVideo/>
+            </hito>
+            <hito>
+                <nombreHito>Pla de l'Agustenc</nombreHito>
+                <coordenadasHito>
+                    <longitud>1.0190028</longitud>
+                    <latitud>41.2604917</latitud>
+                    <altitud>980</altitud>
+                </coordenadasHito>
+                <distanciaHitoAnterior>0.8 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/cova-gran.jpg</fotografia>
                 </galeriaFotografia>
@@ -110,59 +182,27 @@
                     <video>multimedia/cova.mp4</video>
                 </galeriaVideo>
             </hito>
-
             <hito>
-                <nombreHito>Zona Estrecha de la Grieta</nombreHito>
+                <nombreHito>Marcas Amarillas</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0142</longitud>
-                    <latitud>41.2797</latitud>
-                    <altitud>972</altitud>
+                    <longitud>1.0178000</longitud>
+                    <latitud>41.2645444</latitud>
+                    <altitud>970</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0.6 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/grieta-estrecha.jpg</fotografia>
                 </galeriaFotografia>
                 <galeriaVideo/>
             </hito>
-
             <hito>
-                <nombreHito>La Gran Grieta</nombreHito>
+                <nombreHito>Avencs de la Febró</nombreHito>
                 <coordenadasHito>
-                    <longitud>1.0148</longitud>
-                    <latitud>41.2800</latitud>
-                    <altitud>981</altitud>
+                    <longitud>1.0161722</longitud>
+                    <latitud>41.2656583</latitud>
+                    <altitud>968</altitud>
                 </coordenadasHito>
-                <distanciaHitoAnterior>0.4 km</distanciaHitoAnterior>
-                <galeriaFotografia>
-                    <fotografia>multimedia/gran-grieta.jpg</fotografia>
-                </galeriaFotografia>
-                <galeriaVideo>
-                    <video>multimedia/grieta.mp4</video>
-                </galeriaVideo>
-            </hito>
-
-            <hito>
-                <nombreHito>Salida Superior dels Avencs</nombreHito>
-                <coordenadasHito>
-                    <longitud>1.0155</longitud>
-                    <latitud>41.2806</latitud>
-                    <altitud>990</altitud>
-                </coordenadasHito>
-                <distanciaHitoAnterior>0.5 km</distanciaHitoAnterior>
-                <galeriaFotografia>
-                    <fotografia>multimedia/salida-superior.jpg</fotografia>
-                </galeriaFotografia>
-                <galeriaVideo/>
-            </hito>
-
-            <hito>
-                <nombreHito>Regreso por el Sendero Forestal</nombreHito>
-                <coordenadasHito>
-                    <longitud>1.0131</longitud>
-                    <latitud>41.2784</latitud>
-                    <altitud>960</altitud>
-                </coordenadasHito>
-                <distanciaHitoAnterior>1.4 km</distanciaHitoAnterior>
+                <distanciaHitoAnterior>0.2 km</distanciaHitoAnterior>
                 <galeriaFotografia>
                     <fotografia>multimedia/regreso.jpg</fotografia>
                 </galeriaFotografia>

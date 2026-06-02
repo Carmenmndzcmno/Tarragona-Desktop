@@ -17,14 +17,14 @@ class Kml:
         ET.SubElement(placemark, "name").text = nombre
         
         line_string = ET.SubElement(placemark, "LineString")
-        ET.SubElement(line_string, "extrude").text = "1"
+        ET.SubElement(line_string, "extrude").text = "0"
         ET.SubElement(line_string, "tessellate").text = "1"
-        ET.SubElement(line_string, "altitudeMode").text = "relativeToGround"
+        ET.SubElement(line_string, "altitudeMode").text = "clampToGround"
         
-        # Formato de coordenadas: longitud,latitud,altitud
+        # Formato de coordenadas pegado al terreno: longitud,latitud
         coords_text = "\n"
         for lon, lat, alt in coordenadas:
-            coords_text += f"          {lon},{lat},{alt}\n"
+            coords_text += f"          {lon},{lat}\n"
         
         ET.SubElement(line_string, "coordinates").text = coords_text
 
