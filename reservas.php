@@ -8,20 +8,18 @@ class Database {
     public $error = null;
 
     public function __construct() {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         try {
-            $this->conn = @new mysqli($this->host, $this->user, $this->pass);
-            if ($this->conn->connect_error) {
-                $this->conn = @new mysqli($this->host, "root", "");
-                if ($this->conn->connect_error) {
-                    $this->error = "Estado: Error de conexión al servidor de base de datos.";
-                    return;
-                }
+            try {
+                $this->conn = new mysqli($this->host, $this->user, $this->pass);
+            } catch (mysqli_sql_exception $e) {
+                $this->conn = new mysqli($this->host, "root", "");
             }
             $this->conn->query("CREATE DATABASE IF NOT EXISTS $this->dbname");
             $this->conn->select_db($this->dbname);
             $this->checkTables();
         } catch (mysqli_sql_exception $e) {
-            $this->error = "Aviso: No se pudo establecer la conexión automática.";
+            $this->error = "Aviso: No se pudo establecer la conexión automática. Detalle: " . $e->getMessage();
         }
     }
 
@@ -61,22 +59,15 @@ class GestorUsuarios {
         $this->db = $db;
     }
 
-    public function existeEmail($email) {
-        $conn = $this->db->getConnection();
-        $email = $conn->real_escape_string($email);
-        $result = $conn->query("SELECT id FROM usuarios WHERE email = '$email'");
-        return $result->num_rows > 0;
-    }
-
     public function registrar($nombre, $email, $password) {
-        if ($this->existeEmail($email)) {
-            return false;
-        }
         $conn = $this->db->getConnection();
+        $email_esc = $conn->real_escape_string($email);
+        $res = $conn->query("SELECT id FROM usuarios WHERE email = '$email_esc'");
+        if ($res->num_rows > 0) return false;
+
         $nombre = $conn->real_escape_string($nombre);
-        $email = $conn->real_escape_string($email);
         $passHash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO usuarios (nombre, email, password) VALUES ('$nombre', '$email', '$passHash')";
+        $sql = "INSERT INTO usuarios (nombre, email, password) VALUES ('$nombre', '$email_esc', '$passHash')";
         return $conn->query($sql);
     }
 
@@ -142,27 +133,23 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($usuarios->registrar($_POST['nombre'], $_POST['email'], $_POST['password'])) {
             $mensaje = "Confirmación: Registro realizado con éxito.";
         } else {
-            $mensaje = "Error: El usuario ya existe o hubo un problema con el registro.";
+            $mensaje = "Error: El usuario ya existe.";
         }
     } elseif (isset($_POST['login'])) {
         $user = $usuarios->login($_POST['email'], $_POST['password']);
         if ($user) {
             $_SESSION['user'] = $user;
-            $mensaje = "Confirmación: Sesión iniciada para " . $user['nombre'];
+            $mensaje = "Confirmación: Bienvenido, " . $user['nombre'];
         } else {
             $mensaje = "Error: Credenciales incorrectas.";
         }
     } elseif (isset($_POST['reservar']) && isset($_SESSION['user'])) {
         if ($reservas->realizarReserva($_SESSION['user']['id'], $_POST['id_recurso'], $_POST['id_horario'], $_POST['plazas'])) {
             $mensaje = "Confirmación: Reserva guardada.";
-        } else {
-            $mensaje = "Error: No se pudo completar la reserva.";
         }
     } elseif (isset($_POST['anular']) && isset($_SESSION['user'])) {
         if ($reservas->anularReserva($_POST['id_reserva'], $_SESSION['user']['id'])) {
-            $mensaje = "Confirmación: Reserva anulada correctamente.";
-        } else {
-            $mensaje = "Error: No se pudo anular la reserva.";
+            $mensaje = "Confirmación: Reserva anulada.";
         }
     } elseif (isset($_POST['logout'])) {
         session_destroy();
@@ -199,82 +186,96 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
     <main>
         <section>
             <h2>Central de Reservas Turísticas</h2>
+            
             <?php if ($mensaje): ?>
                 <p><strong><?php echo $mensaje; ?></strong></p>
             <?php endif; ?>
 
             <?php if (!isset($_SESSION['user'])): ?>
-                <article>
+                <section>
                     <h3>Acceso y Registro de Usuarios</h3>
                     <form method="post">
                         <fieldset>
                             <legend>Iniciar Sesión</legend>
-                            <label>Email: <input type="email" name="email" required /></label><br>
-                            <label>Contraseña: <input type="password" name="password" required /></label><br>
-                            <button type="submit" name="login">Entrar</button>
+                            <p>
+                                <label>Email: <input type="email" name="email" required /></label><br>
+                                <label>Contraseña: <input type="password" name="password" required /></label><br>
+                                <button type="submit" name="login">Entrar</button>
+                            </p>
                         </fieldset>
                     </form>
                     <form method="post">
                         <fieldset>
                             <legend>Registrar Nuevo Usuario</legend>
-                            <label>Nombre: <input type="text" name="nombre" required /></label><br>
-                            <label>Email: <input type="email" name="email" required /></label><br>
-                            <label>Contraseña: <input type="password" name="password" required /></label><br>
-                            <button type="submit" name="registro">Registrarse</button>
+                            <p>
+                                <label>Nombre: <input type="text" name="nombre" required /></label><br>
+                                <label>Email: <input type="email" name="email" required /></label><br>
+                                <label>Contraseña: <input type="password" name="password" required /></label><br>
+                                <button type="submit" name="registro">Registrarse</button>
+                            </p>
                         </fieldset>
                     </form>
-                </article>
+                </section>
             <?php else: ?>
-                <article>
+                <section>
                     <h3>Panel de Usuario: <?php echo $_SESSION['user']['nombre']; ?></h3>
-                    <form method="post"><button type="submit" name="logout">Cerrar Sesión</button></form>
-                </article>
+                    <form method="post">
+                        <p><button type="submit" name="logout">Cerrar Sesión</button></p>
+                    </form>
+                </section>
 
-                <article>
+                <section>
                     <h3>Reserva de Recursos Turísticos</h3>
                     <form method="post">
-                        <label>Elegir Recurso: 
-                            <select name="id_recurso" onchange="this.form.submit()">
-                                <option value="">-- Seleccione --</option>
-                                <?php 
-                                $lista = $reservas->getRecursos();
-                                while($r = $lista->fetch_assoc()): 
-                                    $sel = (isset($_POST['id_recurso']) && $_POST['id_recurso'] == $r['id']) ? 'selected' : '';
-                                ?>
-                                    <option value="<?php echo $r['id']; ?>" <?php echo $sel; ?>>
-                                        <?php echo $r['nombre']; ?> (<?php echo $r['precio']; ?>€)
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </label>
+                        <p>
+                            <label>Elegir Recurso: 
+                                <select name="id_recurso" onchange="this.form.submit()">
+                                    <option value="">-- Seleccione --</option>
+                                    <?php 
+                                    $lista = $reservas->getRecursos();
+                                    while($r = $lista->fetch_assoc()): 
+                                        $sel = (isset($_POST['id_recurso']) && $_POST['id_recurso'] == $r['id']) ? 'selected' : '';
+                                    ?>
+                                        <option value="<?php echo $r['id']; ?>" <?php echo $sel; ?>>
+                                            <?php echo $r['nombre']; ?> (<?php echo $r['precio']; ?>€)
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </label>
+                        </p>
                     </form>
 
                     <?php if (isset($_POST['id_recurso']) && !empty($_POST['id_recurso'])): ?>
                         <form method="post">
-                            <input type="hidden" name="id_recurso" value="<?php echo $_POST['id_recurso']; ?>" />
-                            <label>Horario:
-                                <select name="id_horario" required>
-                                    <?php 
-                                    $h_list = $reservas->getHorarios($_POST['id_recurso']);
-                                    while($h = $h_list->fetch_assoc()): ?>
-                                        <option value="<?php echo $h['id']; ?>">
-                                            <?php echo $h['fecha_inicio']; ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </label><br>
-                            <label>Número de plazas: <input type="number" name="plazas" min="1" value="1" required /></label><br>
-                            <button type="submit" name="reservar">Confirmar Reserva</button>
+                            <fieldset>
+                                <legend>Confirmar Disponibilidad</legend>
+                                <p>
+                                    <input type="hidden" name="id_recurso" value="<?php echo $_POST['id_recurso']; ?>" />
+                                    <label>Horario:
+                                        <select name="id_horario" required>
+                                            <?php 
+                                            $h_list = $reservas->getHorarios($_POST['id_recurso']);
+                                            while($h = $h_list->fetch_assoc()): ?>
+                                                <option value="<?php echo $h['id']; ?>">
+                                                    <?php echo $h['fecha_inicio']; ?>
+                                                </option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </label><br>
+                                    <label>Número de plazas: <input type="number" name="plazas" min="1" value="1" required /></label><br>
+                                    <button type="submit" name="reservar">Confirmar Reserva</button>
+                                </p>
+                            </fieldset>
                         </form>
                     <?php endif; ?>
-                </article>
+                </section>
 
-                <article>
+                <section>
                     <h3>Tus Recursos Reservados</h3>
                     <?php 
                     $mis_res = $reservas->getReservasUsuario($_SESSION['user']['id']);
                     if ($mis_res->num_rows > 0): ?>
-                        <table border="1">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Recurso</th>
@@ -293,8 +294,10 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <td><?php echo $mr['total']; ?>€</td>
                                         <td>
                                             <form method="post">
-                                                <input type="hidden" name="id_reserva" value="<?php echo $mr['id']; ?>" />
-                                                <button type="submit" name="anular">Anular</button>
+                                                <p>
+                                                    <input type="hidden" name="id_reserva" value="<?php echo $mr['id']; ?>" />
+                                                    <button type="submit" name="anular">Anular</button>
+                                                </p>
                                             </form>
                                         </td>
                                     </tr>
@@ -304,13 +307,13 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php else: ?>
                         <p>No tienes reservas registradas actualmente.</p>
                     <?php endif; ?>
-                </article>
+                </section>
             <?php endif; ?>
 
-            <article>
+            <section>
                 <h3>Listado de Recursos Turísticos Disponibles</h3>
                 <?php if (!$database->error): ?>
-                <table border="1">
+                <table>
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -335,9 +338,9 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     </tbody>
                 </table>
                 <?php else: ?>
-                    <p>Información no disponible.</p>
+                    <p>Información no disponible actualmente.</p>
                 <?php endif; ?>
-            </article>
+            </section>
         </section>
     </main>
 </body>
