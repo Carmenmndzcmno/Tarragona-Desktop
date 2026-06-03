@@ -18,54 +18,54 @@ class Juego {
     constructor() {
         this.#preguntas = [
             {
-                pregunta: "¿Cuál de estos es un plato típico de Tarragona?",
+                pregunta: "¿Cuál de estos platos típicos aparece en la lista de la sección Gastronomía?",
                 opciones: ["Paella Valenciana", "Calçots", "Fabada Asturiana", "Gazpacho", "Cocido Madrileño"],
                 correcta: 1
             },
             {
-                pregunta: "¿Qué monumento romano se encuentra en Tarragona?",
-                opciones: ["Coliseo", "Anfiteatro", "Acueducto de Segovia", "Teatro de Mérida", "Murallas de Lugo"],
+                pregunta: "Según la descripción en Gastronomía, ¿con qué salsa se comen los Calçots?",
+                opciones: ["Alioli", "Brava", "Romesco", "Mayonesa", "Mostaza"],
+                correcta: 2
+            },
+            {
+                pregunta: "¿Cuál de estos restaurantes es mencionado en la sección de Gastronomía?",
+                opciones: ["Casa Pepe", "El Llagut", "Vips", "Burger King", "McDonald's"],
                 correcta: 1
             },
             {
-                pregunta: "¿Cómo se llama el acueducto famoso de Tarragona?",
-                opciones: ["Puente del Diablo", "Puente Romano", "Puente de Hierro", "Puente de Piedra", "Puente Nuevo"],
-                correcta: 0
+                pregunta: "Según la tabla de restaurantes, ¿qué tipo de cocina ofrece 'La Cuineta'?",
+                opciones: ["Cocina italiana", "Cocina tradicional catalana", "Cocina japonesa", "Cocina mexicana", "Cocina rápida"],
+                correcta: 1
             },
             {
-                pregunta: "¿Qué mar baña las costas de Tarragona?",
-                opciones: ["Cantábrico", "Atlántico", "Mediterráneo", "Muerto", "Rojo"],
-                correcta: 2
+                pregunta: "¿Cuál es el rango de precio para el restaurante 'El Llagut' según la tabla?",
+                opciones: ["10€-20€", "30€-50€", "50€-100€", "Gratis", "5€-10€"],
+                correcta: 1
             },
             {
-                pregunta: "¿Cuál es un postre o dulce mencionado en la gastronomía?",
-                opciones: ["Tarta de Santiago", "Ensaimada", "Coca de Recapte", "Turrón de Jijona", "Sobao Pasiego"],
-                correcta: 2
+                pregunta: "¿Quién figura como autor del sitio web en los metadatos de las páginas?",
+                opciones: ["Juan Pérez", "Carmen Méndez Camino", "Ana García", "Luis López", "Pedro Martínez"],
+                correcta: 1
             },
             {
-                pregunta: "¿Qué recurso turístico se encuentra en el Balcón del Mediterráneo?",
-                opciones: ["Un puerto", "Una estatua", "Vistas al mar", "Un museo", "Un mercado"],
-                correcta: 2
-            },
-            {
-                pregunta: "¿Cuál es la capital de la provincia?",
-                opciones: ["Reus", "Tortosa", "Tarragona", "Valls", "Salou"],
-                correcta: 2
-            },
-            {
-                pregunta: "¿Qué tipo de clima se muestra en la sección de meteorología?",
-                opciones: ["Oceánico", "Continental", "Mediterráneo", "Desértico", "Tropical"],
-                correcta: 2
-            },
-            {
-                pregunta: "¿Qué monumento es Patrimonio de la Humanidad en Tarragona?",
-                opciones: ["Conjunto Arqueológico de Tarraco", "Sagrada Familia", "Alhambra", "Mezquita de Córdoba", "Catedral de Burgos"],
-                correcta: 0
-            },
-            {
-                pregunta: "¿En qué sección del sitio web se habla de los platos típicos?",
-                opciones: ["Inicio", "Rutas", "Meteorología", "Gastronomía", "Ayuda"],
+                pregunta: "¿Qué sección del menú permite consultar el tiempo en Tarragona?",
+                opciones: ["Inicio", "Gastronomía", "Rutas", "Meteorología", "Ayuda"],
                 correcta: 3
+            },
+            {
+                pregunta: "¿Cuál es el título que aparece en la pestaña del navegador para la página principal?",
+                opciones: ["Tarragona-Inicio", "Tarragona-Desktop", "Tarragona-Web", "Ciudad de Tarragona", "Turismo Tarragona"],
+                correcta: 1
+            },
+            {
+                pregunta: "¿Cómo se llama el archivo de JavaScript que gestiona el carrusel de imágenes en la página de inicio?",
+                opciones: ["index.js", "carrusel.js", "imagenes.js", "slider.js", "main.js"],
+                correcta: 1
+            },
+            {
+                pregunta: "¿A qué ciudad se refiere toda la información del sitio web?",
+                opciones: ["Barcelona", "Tarragona", "Lérida", "Gerona", "Madrid"],
+                correcta: 1
             }
         ];
         this.#puntuacion = 0;
@@ -151,7 +151,7 @@ class Juego {
         }
 
         const h2Resultado = document.createElement("h2");
-        h2Resultado.textContent = "¡Felicidades has sacado! " + this.#puntuacion + " / 10";
+        h2Resultado.textContent = "¡Felicidades has sacado " + this.#puntuacion + " / 10 !";
         
         this.#formElement.appendChild(h2Resultado);
         
