@@ -7,7 +7,7 @@
  * Cumple con las restricciones de no usar ID's.
  */
 (function() {
-    // Evitar que el script falle si se carga varias veces (Uncaught SyntaxError: Identifier 'Rutas' has already been declared)
+    // Evitar que el script falle si se carga varias veces
     if (window.rutasCargadas) return;
     window.rutasCargadas = true;
 
@@ -60,8 +60,8 @@
                 const lonIni = rutaNode.find("coordenadasGeograficas longitud").text();
                 const altIni = rutaNode.find("coordenadasGeograficas altitud").text();
 
-                const article = jQuery("<article>");
-                article.append(jQuery("<h3>").text(nombre));
+                const sectionRuta = jQuery("<section>");
+                sectionRuta.append(jQuery("<h3>").text(nombre));
                 
                 // Datos generales
                 const sectionInfo = jQuery("<section>");
@@ -76,7 +76,7 @@
                 sectionInfo.append(jQuery("<p>").html("<strong>Descripción:</strong> " + descripcion));
                 sectionInfo.append(jQuery("<p>").html("<strong>Adecuado para:</strong> " + personas));
                 sectionInfo.append(jQuery("<p>").html("<strong>Recomendación:</strong> " + recomendacion));
-                article.append(sectionInfo);
+                sectionRuta.append(sectionInfo);
 
                 // Hitos
                 const sectionHitos = jQuery("<section>");
@@ -91,7 +91,7 @@
                     olHitos.append(jQuery("<li>").text(nombreHito + " - Distancia desde anterior: " + dist + " (Coords: " + latH + ", " + lonH + ")"));
                 });
                 sectionHitos.append(olHitos);
-                article.append(sectionHitos);
+                sectionRuta.append(sectionHitos);
 
                 // Mapa (Planimetría KML)
                 const sectionMapa = jQuery("<section>");
@@ -100,20 +100,19 @@
                 mapContainer.css({
                     "height": "400px",
                     "width": "100%",
-                    "margin-bottom": "20px",
-                    "border": "1px solid #ccc"
+                    "margin-bottom": "20px"
                 });
                 sectionMapa.append(mapContainer);
-                article.append(sectionMapa);
+                sectionRuta.append(sectionMapa);
 
                 // Altimetría (SVG)
                 const sectionAlt = jQuery("<section>");
-                sectionAlt.append(jQuery("<h4>").text("Altimetría (Perfil de elevación)"));
+                sectionAlt.append(jQuery("<h4>").text("Altimetría (Perfil)"));
                 const svgContainer = jQuery("<div>");
                 sectionAlt.append(svgContainer);
-                article.append(sectionAlt);
+                sectionRuta.append(sectionAlt);
 
-                main.append(article);
+                main.append(sectionRuta);
 
                 // Inicializar Mapa y SVG después de añadir al DOM
                 self.initMapa(mapContainer[0], "xml/" + kmlFile);

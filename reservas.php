@@ -162,8 +162,10 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Tarragona-Reservas</title>
+    <title>Tarragona-Desktop</title>
     <meta name="author" content="Carmen Méndez Camino"/>
+    <meta name="description" content="Gestión de reservas de Tarragona-Desktop"/>
+    <meta name="keywords" content="Reservas, Tarragona"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
@@ -171,24 +173,24 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <header>
-        <h1><a href="index.html">Tarragona-Desktop</a></h1>
+        <h1><a href="index.html" title="Inicio de Tarragona-Desktop">Tarragona-Desktop</a></h1>
         <nav>
-            <a href="index.html">Inicio</a>
-            <a href="gastronomia.html">Gastronomía</a>
-            <a href="rutas.html">Rutas</a>
-            <a href="meteorologia.html">Meteorología</a>
-            <a href="juego.html">Juego</a>
-            <a href="reservas.php">Reservas</a>
-            <a href="ayuda.html">Ayuda</a>
+            <a href="index.html" title="Inicio de Tarragona-Desktop">Inicio</a>
+            <a href="gastronomia.html" title="Información de la Gastronomia">Gastronomía</a>
+            <a href="rutas.html" title="Información sobre rutas">Rutas</a>
+            <a href="meteorologia.html" title="Información sobre meteorología">Meteorología</a>
+            <a href="juego.html" title="Información sobre juego">Juego</a>
+            <a href="reservas.php" title="Información sobre las reservas">Reservas</a>
+            <a href="ayuda.html" title="Ayuda de Tarragona-Desktop">Ayuda</a>
         </nav>
     </header>
-    <p>Estás en: <a href="index.html">Inicio</a> >> <strong>Reservas</strong></p>
+    <p>Usted está en: <a href="index.html" title="Migaja de Inicio">Inicio</a> >> Reservas</p>
     <main>
         <section>
             <h2>Central de Reservas Turísticas</h2>
             
             <?php if ($mensaje): ?>
-                <p><strong><?php echo $mensaje; ?></strong></p>
+                <p><?php echo $mensaje; ?></p>
             <?php endif; ?>
 
             <?php if (!isset($_SESSION['user'])): ?>
@@ -253,6 +255,7 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <input type="hidden" name="id_recurso" value="<?php echo $_POST['id_recurso']; ?>" />
                                     <label>Horario:
                                         <select name="id_horario" required>
+                                            <option value="">-- Seleccione un horario --</option>
                                             <?php 
                                             $h_list = $reservas->getHorarios($_POST['id_recurso']);
                                             while($h = $h_list->fetch_assoc()): ?>

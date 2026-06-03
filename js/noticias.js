@@ -85,7 +85,8 @@ class Noticias {
         }
         
         this.#sectionNoticias.empty();
-        this.#sectionNoticias.append("<h2>Noticias de Tarragona</h2>");
+        const h2 = $("<h2>").text("Noticias de Tarragona");
+        this.#sectionNoticias.append(h2);
 
         if (!noticias.length) {
             this.#sectionNoticias.append("<p>No se encontraron noticias recientes.</p>");
@@ -93,29 +94,20 @@ class Noticias {
         }
 
         noticias.forEach(noticia => {
-            // Se utilizan etiquetas semánticas article, h3 y p
+            // Se utilizan etiquetas semánticas article, h3 y p para cumplir con W3C y estilos CSS
             const article = $("<article>");
-            const h3 = $("<h3>");
+            const h3 = $("<h3>").text(noticia.title);
+            const pEntradilla = $("<p>").text(noticia.entradilla);
+            const pSource = $("<p>").text("Fuente: " + noticia.source);
             const link = $("<a>")
                 .attr("href", noticia.url)
-                .attr("target", "_blank")
-                .attr("rel", "noopener noreferrer")
-                .text(noticia.title);
+                .text("Leer más");
+
+            article.append(h3);
+            article.append(pEntradilla);
+            article.append(pSource);
+            article.append(link);
             
-            h3.append(link);
-            
-            const pDesc = $("<p>").text(noticia.entradilla);
-            const pFuente = $("<p>").text(`Fuente: ${noticia.source}`);
-            const pLeerMas = $("<p>");
-            const linkLeerMas = $("<a>")
-                .attr("href", noticia.url)
-                .attr("target", "_blank")
-                .attr("rel", "noopener noreferrer")
-                .text("Leer noticia completa »");
-            
-            pLeerMas.append(linkLeerMas);
-            
-            article.append(h3).append(pDesc).append(pFuente).append(pLeerMas);
             this.#sectionNoticias.append(article);
         });
     }

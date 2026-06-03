@@ -32,21 +32,22 @@ class Carrusel {
      * Encapsula el uso de jQuery y utiliza etiquetas semánticas.
      */
     render() {
-        const section = $("<section>");
+        const sectionCarrusel = $("<section>");
         const h2 = $("<h2>").text("Principales recursos turísticos de Tarragona");
         
-        // Se utiliza 'article' en lugar de 'div' para cumplir con la semántica HTML5
-        const container = $("<article>");
+        // Se añade un article con encabezado para cumplir con la validación W3C y mantener los estilos de layout.css
+        const article = $("<article>");
+        const h3 = $("<h3>").text("Imagen del recurso turístico");
         
         // Se guarda la referencia al elemento img para actualizarlo sin selectores globales
         this.#imgElement = $("<img>")
             .attr("src", this.#imagenes[this.#indiceActual].src)
             .attr("alt", this.#imagenes[this.#indiceActual].alt);
 
-        container.append(this.#imgElement);
-        section.append(h2).append(container);
+        article.append(h3).append(this.#imgElement);
+        sectionCarrusel.append(h2).append(article);
 
-        $("main").append(section);
+        $("main").append(sectionCarrusel);
 
         // Inicia el cambio automático de imágenes cada 3 segundos (3000ms)
         setInterval(this.siguiente.bind(this), 3000);
