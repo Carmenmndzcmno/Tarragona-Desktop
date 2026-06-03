@@ -163,7 +163,17 @@ class Rutas {
     }
 }
 
-$(document).ready(() => {
-    const app = new Rutas();
-    app.init();
-});
+/**
+ * Inicialización segura: espera a que las librerías cargadas al final del body estén listas.
+ */
+const initRutas = () => {
+    if (typeof $ !== 'undefined' && typeof L !== 'undefined' && typeof omnivore !== 'undefined') {
+        const app = new Rutas();
+        app.init();
+    } else {
+        // Reintenta en 50ms si las librerías aún no están disponibles
+        setTimeout(initRutas, 50);
+    }
+};
+
+initRutas();
