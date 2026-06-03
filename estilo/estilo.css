@@ -38,12 +38,6 @@ nav a[href="index.html"] {
     color: #5A1400;
 }
 
-/* Diseño del carrusel de imágenes */
-/* especificidad: 003 */
-main > section > article {
-    background-color: #000;
-}
-
 /* Ajuste para contenedor del mapa u otros elementos de sección */
 /* especificidad: 003 */
 /* Los elementos en el article pueden heredar propiedades como color o fuente de body */

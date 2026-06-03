@@ -61,7 +61,6 @@ main > section > article {
     position: relative;
     max-width: 50rem;
     margin: 1em auto;
-    background-color: #000;
 }
 
 /* especificidad: 004 */
@@ -76,7 +75,6 @@ main > section > article img {
 /* Los elementos en el article pueden heredar propiedades como color o fuente de body */
 main > section:nth-of-type(3) > article {
     min-height: 25rem;
-    background-color: #eee;
 }
 
 /* Botón visible y con tamaño legible */

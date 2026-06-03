@@ -1,5 +1,5 @@
---Datos personales: Carmen Méndez Camino UO299841
-CREATE DATABASE UO299841_DB;
+-- Datos personales: Carmen Méndez Camino UO299841
+CREATE DATABASE IF NOT EXISTS UO299841_DB;
 USE UO299841_DB;
 
 -- Borrado de tablas en orden inverso a sus dependencias
