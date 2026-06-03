@@ -43,8 +43,8 @@ class Juego {
                 correcta: 1
             },
             {
-                pregunta: "¿Quién figura como autor del sitio web en los metadatos de las páginas?",
-                opciones: ["Juan Pérez", "Carmen Méndez Camino", "Ana García", "Luis López", "Pedro Martínez"],
+                pregunta: "¿Qué es el Arrosejat?",
+                opciones: ["Un plato de chipirones", "Un plato de arroz", "Un tipo de pizza", "Pan con tomate", "Cebollas"],
                 correcta: 1
             },
             {
@@ -58,9 +58,9 @@ class Juego {
                 correcta: 1
             },
             {
-                pregunta: "¿Cómo se llama el archivo de JavaScript que gestiona el carrusel de imágenes en la página de inicio?",
-                opciones: ["index.js", "carrusel.js", "imagenes.js", "slider.js", "main.js"],
-                correcta: 1
+                pregunta: "¿Qué tantos días se preveen en Meteorología?",
+                opciones: ["1", "5", "7", "Ninguno", "14"],
+                correcta: 3
             },
             {
                 pregunta: "¿A qué ciudad se refiere toda la información del sitio web?",
