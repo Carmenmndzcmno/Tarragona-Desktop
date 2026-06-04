@@ -37,7 +37,7 @@ class Carrusel {
         
         // Se añade un article con encabezado para cumplir con la validación W3C y mantener los estilos de layout.css
         const article = $("<article>");
-        const h3 = $("<h3>").text("Imagen del recurso turístico");
+        const h3 = $("<h3>").text("Imagen del recurso turístico").hide();
         
         // Se guarda la referencia al elemento img para actualizarlo sin selectores globales
         this.#imgElement = $("<img>")

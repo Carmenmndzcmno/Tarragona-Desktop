@@ -96,13 +96,17 @@ class Noticias {
         noticias.forEach(noticia => {
             // Se utilizan etiquetas semánticas article, h3 y p para cumplir con W3C y estilos CSS
             const article = $("<article>");
-            const h3 = $("<h3>").text(noticia.title);
+            
+            // Título de la noticia como h3 para validación W3C
+            const h3 = $("<h3>").text(noticia.title || "Noticia de Tarragona");
+            
             const pEntradilla = $("<p>").text(noticia.entradilla);
             const pSource = $("<p>").text("Fuente: " + noticia.source);
             const link = $("<a>")
                 .attr("href", noticia.url)
                 .text("Leer más");
 
+            // Aseguramos que el h3 sea lo primero en el article
             article.append(h3);
             article.append(pEntradilla);
             article.append(pSource);
