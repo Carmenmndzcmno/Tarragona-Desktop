@@ -58,3 +58,9 @@ label > input[type="file"] {
 label > input[type="file"]::file-selector-button {
     font-size: 1rem;
 }
+
+/*especificacion (0,1,2)*/
+/*Hereda de body en este caso el background*/
+header a.active {
+    color: #5A1400;
+}
