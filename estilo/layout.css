@@ -210,3 +210,16 @@ main p, main li {
         display: block; /* redefinición de display */
     }
 }
+
+/* Botón visible y con tamaño legible */
+/* especificidad: 001 */
+label > input[type="file"]::file-selector-button {
+    font-size: 1rem;
+}
+
+/* Ocultar el texto del nombre de archivo en inputs de tipo file */
+/* especificidad: 002 */
+/* Las propiedades font-size y color se heredan de los contenedores del label, o si no del body */
+label > input[type="file"] {
+    font-size: 0;
+}

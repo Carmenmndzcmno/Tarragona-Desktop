@@ -1,7 +1,10 @@
 /*Datos personales: Carmen Méndez Camino UO299841*/
 
-/*Estilos generales del proyecto MotoGP-Desktop*/
+/*Estilos generales del proyecto Tarragona-Desktop*/
 /*Paleta de colores en RGB: Rojo #5A1400 ; Amarillo #E8AD3B ; Marrón oscuro #111613 ; Blanco no puro #ECede6*/
+
+/*Body*/
+
 /* Hereda fuentes predeterminadas del navegador, aplica un color de fondo y un color de texto */
 /* especificidad: 001 */
 body{
@@ -9,6 +12,8 @@ body{
     background-color: #ECede6; 
     color: #111613;
 }
+
+/*Header*/
 
 /* especificidad: 001 */
 header{ /*Hereda "color" de body*/
@@ -21,22 +26,28 @@ header a{
     text-decoration-line:none;
 }
 
+/*especificacion (0,1,2)*/
+/*Hereda de body en este caso el background*/
+header a.active {
+    color: #5A1400;
+}
+
+/*h1 ; nav*/
+
 /* especificidad: 001 */
 h1, nav{ /*Hereda "background-color" de header*/
     color: #5A1400;
 }
 
 
+/*p*/
+
 /* especificidad: 002 */
 p:first-child{ /*Hereda "color","background-color","font-family" de body*/
     font-size: 0.8em; /*em es relativo*/
 }
 
-/* especificidad: 002 */
-/* Hereda de body el color de fondo y de nav el color de texto */
-nav a[href="index.html"] {
-    color: #5A1400;
-}
+/*main*/
 
 /* Ajuste para contenedor del mapa u otros elementos de sección */
 /* especificidad: 003 */
@@ -45,22 +56,12 @@ main > section:nth-of-type(3) > article {
     background-color: #eee;
 }
 
+/*label*/
+
 /* Ocultar el texto del nombre de archivo en inputs de tipo file */
 /* especificidad: 002 */
 /* Las propiedades font-size y color se heredan de los contenedores del label, o si no del body */
 label > input[type="file"] {
     font-size: 0;
     color: transparent; 
-}
-
-/* Botón visible y con tamaño legible */
-/* especificidad: 001 */
-label > input[type="file"]::file-selector-button {
-    font-size: 1rem;
-}
-
-/*especificacion (0,1,2)*/
-/*Hereda de body en este caso el background*/
-header a.active {
-    color: #5A1400;
 }
