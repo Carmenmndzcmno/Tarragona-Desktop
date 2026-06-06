@@ -1,67 +1,80 @@
-/*Datos personales: Carmen Méndez Camino UO299841*/
+/* Datos personales: Carmen Méndez Camino UO299841 */
 
-/*Estilos generales del proyecto Tarragona-Desktop*/
-/*Paleta de colores en RGB: Rojo #5A1400 ; Amarillo #E8AD3B ; Marrón oscuro #111613 ; Blanco no puro #ECede6*/
+/* Estilos generales del proyecto Tarragona-Desktop */
+/* Paleta de colores en RGB: Rojo #5A1400 ; Amarillo #E8AD3B ; Marrón oscuro #111613 ; Blanco no puro #ECede6 */
 
-/*Body*/
-
+/* body */
 /* Hereda fuentes predeterminadas del navegador, aplica un color de fondo y un color de texto */
-/* especificidad: 001 */
-body{
-    font-family: Helvetica, Arial, sans-serif ;
-    background-color: #ECede6; 
+/* Especificidad: 0,0,1 */
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #ECede6;
     color: #111613;
 }
 
-/*Header*/
-
-/* especificidad: 001 */
-header{ /*Hereda "color" de body*/
+/* header */
+/* Hereda fuentes de body. Define fondo específico para la cabecera */
+/* Especificidad: 0,0,1 */
+header {
     background-color: #E8AD3B;
 }
 
-/* especificidad: 002 */
-header a{
-    color: #111613; /*hereda el color de texto de body */
-    text-decoration-line:none;
+/* header a */
+/* Hereda color de body a través de header. Se redefine para navegación */
+/* Especificidad: 0,0,2 */
+header a {
+    color: #111613; /* Redefinición de color para enlaces en cabecera */
+    text-decoration-line: none;
 }
 
-/*especificacion (0,1,2)*/
-/*Hereda de body en este caso el background*/
-header a.active {
+/* h1, nav */
+/* Heredan fondo de header. Se aplica color específico de la marca */
+/* Especificidad: 0,0,1 */
+h1, nav {
     color: #5A1400;
 }
 
-/*h1 ; nav*/
-
-/* especificidad: 001 */
-h1, nav{ /*Hereda "background-color" de header*/
-    color: #5A1400;
+/* body > p:first-of-type (migas de pan) */
+/* Hereda color y fuente de body. Se ajusta tamaño para migas de pan */
+/* Especificidad: 0,0,2 */
+body > p:first-of-type {
+    font-size: 0.8rem;
 }
 
-
-/*p*/
-
-/* especificidad: 002 */
-p:first-child{ /*Hereda "color","background-color","font-family" de body*/
-    font-size: 0.8em; /*em es relativo*/
+/* main > section > article */
+/* Hereda color de body. Se aplica fondo gris suave para destacar bloques de contenido */
+/* Especificidad: 0,0,3 */
+main > section > article {
+    background-color: #f4f4f4; /* Redefinición de fondo para legibilidad */
 }
 
-/*main*/
-
-/* Ajuste para contenedor del mapa u otros elementos de sección */
-/* especificidad: 003 */
-/* Los elementos en el article pueden heredar propiedades como color o fuente de body */
-main > section:nth-of-type(3) > article {
-    background-color: #eee;
-}
-
-/*label*/
-
-/* Ocultar el texto del nombre de archivo en inputs de tipo file */
-/* especificidad: 002 */
-/* Las propiedades font-size y color se heredan de los contenedores del label, o si no del body */
+/* label > input[type="file"] */
+/* Hereda propiedades de fuente del contenedor. Se oculta texto nativo para personalización */
+/* Especificidad: 0,0,2 */
 label > input[type="file"] {
     font-size: 0;
-    color: transparent; 
+    color: transparent; /* Justificación: Se oculta para usar ::file-selector-button personalizado */
+}
+
+/* table */
+/* Hereda color de body. Se define estructura básica de tablas */
+/* Especificidad: 0,0,1 */
+table {
+    border: 0.06rem solid #111613;
+}
+
+/* th, td */
+/* Heredan propiedades de table. Se añade espaciado y bordes */
+/* Especificidad: 0,0,1 */
+th, td {
+    border: 0.06rem solid #111613;
+    padding: 0.5rem;
+}
+
+/* th */
+/* Hereda de table. Fondo destacado para cabeceras de tabla */
+/* Especificidad: 0,0,1 */
+th {
+    background-color: #5A1400;
+    color: #ECede6; /* Redefinición para contraste con fondo oscuro */
 }

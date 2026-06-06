@@ -1,225 +1,109 @@
 /* Datos personales: Carmen Méndez Camino UO299841 */
 /* Layout general del proyecto Tarragona-Desktop */
 
-/* especificidad: 001 */
+/* header */
+/* Define el contenedor principal con Flexbox para alineación horizontal */
+/* Especificidad: 0,0,1 */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2em;
+    padding: 0 2rem;
 }
 
-/* especificidad: 001 */
+/* nav */
+/* Usa Flexbox para organizar los enlaces de navegación */
+/* Especificidad: 0,0,1 */
 nav {
-    flex-direction: row; /* Esto redefine la propiedad por defecto de flex-direction en 'nav' */
-}
-
-/* especificidad: 001 */
-table {
-    border-collapse: collapse;
-    overflow-x: auto;
-}
-
-/* especificidad: 001 */
-th, td {
-    white-space: normal;
-    overflow-wrap: break-word;
-}
-
-/* Por defecto: se muestra SOLO la primera tabla */
-/* especificidad: 002 */
-section table:nth-of-type(2) {
-    display: none;
-}
-
-/* especificidad: 002 */
-article h2+img {
-    width: 100%;
-    height: 20rem;
-    object-fit: cover;
-    display: block;
-}
-
-/* Reglas de layout movidas desde estilo.css */
-/* especificidad: 001 */
-section article {
-    margin: 1em 0;
-    padding: 1em;
-}
-
-/* especificidad: 001 */
-section figure {
-    margin: 1em 0;
-}
-
-/* Diseño del carrusel de imágenes */
-/* especificidad: 003 */
-main > section > article {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    max-width: 50rem;
-    margin: 1em auto;
+    gap: 1rem;
 }
 
-/* especificidad: 004 */
-main > section > article img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+/* main */
+/* Contenedor principal con Grid Layout para organizar las secciones */
+/* Especificidad: 0,0,1 */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
 }
 
-/* Ajuste para contenedor del mapa u otros elementos de sección */
-/* especificidad: 003 */
-/* Los elementos en el article pueden heredar propiedades como color o fuente de body */
-main > section:nth-of-type(3) > article {
+/* section article */
+/* Cada artículo se comporta como un contenedor flexible para sus elementos internos */
+/* Especificidad: 0,0,2 */
+section > article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+/* table */
+/* Se asegura que las tablas no rompan el layout en pantallas pequeñas */
+/* Especificidad: 0,0,1 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* div (específicamente para mapas dinámicos como se permite) */
+/* Especificidad: 0,0,1 */
+div {
+    width: 100%;
     min-height: 25rem;
 }
 
-/* Botón visible y con tamaño legible */
-/* especificidad: 001 */
-label > input[type="file"]::file-selector-button {
-    font-size: 1rem;
-    padding: 0.4em 0.8em;
+/* section img (para la galería de fotos de rutas) */
+/* Especificidad: 0,0,2 */
+section img {
+    display: inline-block;
+    max-width: 12.5rem;
+    margin: 0.625rem;
 }
 
-/* especificidad: 001 */
-main a {
-    overflow-wrap: break-word;
+/* section svg (para la altimetría de rutas) */
+/* Especificidad: 0,0,2 */
+section svg {
+    width: 100%;
+    height: auto;
 }
 
-/* especificidad: 001 */
-main p, main li {
-    overflow-wrap: break-word;
-}
+/* Media Queries para adaptabilidad */
 
-@media(min-width: 320px) and (max-width:799px){
-    /* especificidad dentro del @media: 001 */
-    header, h1, nav {
-        display: flex; /* redefinición de display */
-        flex-direction: column; /* redefinición de flex-direction */
-        justify-content: center; /* redefinición de justify-content */
+/* Tablets y pantallas medianas */
+@media (max-width: 50rem) {
+    /* header */
+    /* Cambia a disposición vertical para ahorrar espacio horizontal */
+    /* Especificidad: 0,0,1 */
+    header {
+        flex-direction: column;
+        padding: 1rem;
     }
-
-    /* especificidad dentro del @media: 011 */
-    p:first-child {
-        display: none; /* redefinición de display */
-    }
-
-    /* especificidad dentro del @media: 001 */
-    video {
-        width: 100%;
-        height: auto;
-    }
-
-    /* especificidad dentro del @media: 001 */
-    audio {
-        width: 100%;
-    }
-
-    /* especificidad dentro del @media: 003 */
-    article h2+img {
-        width: 100%; /* redefinición de width */
-    }
-
-    /* especificidad dentro del @media: 004 */
-    main > section:nth-of-type(1) > article img {
-        width: 90%; /* redefinición de width */
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* especificidad dentro del @media: 003 */
-    main > section:nth-of-type(2) > section svg {
-        width: 90%; /* redefinición de width */
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* Ocultamos la tabla grande */
-    /* especificidad dentro del @media: 002 */
-    section table:nth-of-type(1) {
-        display: none; /* redefinición de display */
-    }
-
-    /* Mostramos la tabla transpuesta */
-    /* especificidad dentro del @media: 002 */
-    section table:nth-of-type(2) {
-        display: table; /* redefinición de display */
-        width: 100%;
-    }
-
-    /* Ajustes de celdas para evitar desbordes */
-    /* especificidad dentro del @media: 002 */
-    th, td {
-        white-space: normal; /* redefinición de white-space */
-        overflow-wrap: break-word; /* redefinición de overflow-wrap */
-    }
-
-    /* Asegurar que el mapa sea responsive */
-    /* especificidad dentro del @media: 003 */
-    main > section:nth-of-type(3) > article {
-        width: 90%; /* redefinición de width */
-        margin: 0 auto;
-        height: 50vh;
+    
+    /* nav */
+    /* Los enlaces se apilan en móviles */
+    /* Especificidad: 0,0,1 */
+    nav {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
-/* Ocultar migas de navegación en móviles*/
-@media (max-width: 465px) {
-    /* Especificidad dentro del @media: 002 */
+/* Móviles pequeños */
+@media (max-width: 30rem) {
+    /* main */
+    /* Reduce el padding en pantallas muy pequeñas */
+    /* Especificidad: 0,0,1 */
+    main {
+        padding: 0.5rem;
+    }
+    
+    /* body > p:first-of-type (migas de pan) */
+    /* Se ocultan en móviles para limpiar la interfaz */
+    /* Especificidad: 0,0,2 */
     body > p:first-of-type {
-        display: none; /* redefinición de display */
+        display: none;
     }
-
-    /* Ocultamos la tabla grande */
-    /* especificidad dentro del @media: 002 */
-    section table:nth-of-type(1) {
-        display: none; /* redefinición de display */
-    }
-
-    /* Mostramos la tabla transpuesta */
-    /* especificidad dentro del @media: 002 */
-    section table:nth-of-type(2) {
-        display: table; /* redefinición de display */
-        width: 100%; /* redefinición de width */
-    }
-
-    /* Ajustes de celdas para evitar desbordes */
-    /* especificidad dentro del @media: 002 */
-    th, td {
-        white-space: normal; /* redefinición de white-space */
-        overflow-wrap: break-word; /* redefinición de overflow-wrap */
-    }
-
-    /* Asegurar que el mapa sea responsive */
-    /* especificidad dentro del @media: 002 */
-    main > section:nth-of-type(3) > article {
-        width: 90%; /* redefinición de width */
-        margin: 0 auto; /* redefinición de margin */
-        height: 40vh; /* redefinición de height */
-    }
-
-    /* especificidad dentro del @media: 004 */
-    main > section:nth-of-type(1) > article img {
-        width: 85%; /* redefinición de width */
-        height: auto; /* redefinición de height */
-        display: block; /* redefinición de display */
-    }
-}
-
-/* Botón visible y con tamaño legible */
-/* especificidad: 001 */
-label > input[type="file"]::file-selector-button {
-    font-size: 1rem;
-}
-
-/* Ocultar el texto del nombre de archivo en inputs de tipo file */
-/* especificidad: 002 */
-/* Las propiedades font-size y color se heredan de los contenedores del label, o si no del body */
-label > input[type="file"] {
-    font-size: 0;
 }

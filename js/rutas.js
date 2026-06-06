@@ -3,174 +3,207 @@
 
 /**
  * Clase que gestiona la carga y visualización de rutas turísticas.
- * Utiliza jQuery para el procesamiento de XML y Leaflet para la cartografía.
- * Cumple con las restricciones de no usar ID's.
+ * Utiliza jQuery para el procesamiento de XML y la API de Google Maps para la cartografía.
+ * Respeta todas las restricciones: OOP, solo jQuery/Gmaps, sin divs extras, medidas relativas.
  */
-(function() {
-    // Evitar que el script falle si se carga varias veces
-    if (window.rutasCargadas) return;
-    window.rutasCargadas = true;
+class Rutas {
+    constructor() {
+        this.xmlPath = "xml/rutas.xml";
+    }
 
-    class Rutas {
-        constructor() {
-            this.xmlPath = "xml/rutas.xml";
-        }
-
-        /**
-         * Carga el archivo XML y comienza el procesamiento.
-         */
-        init() {
-            jQuery.ajax({
-                type: "GET",
-                url: this.xmlPath,
-                dataType: "xml",
-                success: (xml) => {
-                    this.procesarRutas(xml);
-                },
-                error: () => {
-                    const main = jQuery("main");
-                    main.append("<p>Error al cargar el archivo de rutas.</p>");
-                }
-            });
-        }
-
-        /**
-         * Itera sobre cada ruta en el XML y genera su representación en el DOM.
-         */
-        procesarRutas(xml) {
-            const main = jQuery("main");
-            const self = this;
-
-            jQuery(xml).find("ruta").each(function() {
-                const rutaNode = jQuery(this);
-                const nombre = rutaNode.find("nombreRuta").text();
-                const tipo = rutaNode.find("tipoRuta").text();
-                const transporte = rutaNode.find("medioTransporte").text();
-                const duracion = rutaNode.find("tiempoDuracion").text();
-                const agencia = rutaNode.find("agenciaGestora").text();
-                const descripcion = rutaNode.find("descripcion").text();
-                const personas = rutaNode.find("personasAdecuadas").text();
-                const inicio = rutaNode.find("lugarInicio").text();
-                const recomendacion = rutaNode.find("recomendacion").text();
-                const kmlFile = rutaNode.find("planimetria").text();
-                const svgFile = rutaNode.find("altimetria").text();
-
-                // Coordenadas de inicio
-                const latIni = rutaNode.find("coordenadasGeograficas latitud").text();
-                const lonIni = rutaNode.find("coordenadasGeograficas longitud").text();
-                const altIni = rutaNode.find("coordenadasGeograficas altitud").text();
-
-                const sectionRuta = jQuery("<section>");
-                sectionRuta.append(jQuery("<h3>").text(nombre));
+    /**
+     * Carga el archivo XML y comienza el procesamiento.
+     */
+    init() {
+        const self = this;
+        jQuery.ajax({
+            type: "GET",
+            url: this.xmlPath,
+            dataType: "xml",
+            success: function(xml) {
+                // Buscamos todos los elementos <ruta> de forma robusta
+                const $rutas = jQuery(xml).find("ruta");
                 
-                // Datos generales
-                const sectionInfo = jQuery("<section>");
-                sectionInfo.append(jQuery("<h4>").text("Información General"));
-                const ulInfo = jQuery("<ul>");
-                ulInfo.append(jQuery("<li>").html("<strong>Tipo:</strong> " + tipo));
-                ulInfo.append(jQuery("<li>").html("<strong>Transporte:</strong> " + transporte));
-                ulInfo.append(jQuery("<li>").html("<strong>Duración:</strong> " + duracion));
-                ulInfo.append(jQuery("<li>").html("<strong>Agencia:</strong> " + agencia));
-                ulInfo.append(jQuery("<li>").html("<strong>Inicio:</strong> " + inicio + " (" + latIni + ", " + lonIni + ", " + altIni + "m)"));
-                sectionInfo.append(ulInfo);
-                sectionInfo.append(jQuery("<p>").html("<strong>Descripción:</strong> " + descripcion));
-                sectionInfo.append(jQuery("<p>").html("<strong>Adecuado para:</strong> " + personas));
-                sectionInfo.append(jQuery("<p>").html("<strong>Recomendación:</strong> " + recomendacion));
-                sectionRuta.append(sectionInfo);
+                if ($rutas.length > 0) {
+                    self.procesarRutas($rutas);
+                } else {
+                    jQuery("main").append(jQuery("<p>").text("No se han encontrado rutas en el XML."));
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error al cargar XML:", textStatus, errorThrown);
+                jQuery("main").append(jQuery("<p>").text("Error al cargar el archivo de rutas (XML)."));
+            }
+        });
+    }
 
-                // Hitos
-                const sectionHitos = jQuery("<section>");
-                sectionHitos.append(jQuery("<h4>").text("Hitos de la Ruta"));
-                const olHitos = jQuery("<ol>");
-                rutaNode.find("hito").each(function() {
-                    const hito = jQuery(this);
-                    const nombreHito = hito.find("nombreHito").text();
-                    const dist = hito.find("distanciaHitoAnterior").text();
-                    const latH = hito.find("coordenadasHito latitud").text();
-                    const lonH = hito.find("coordenadasHito longitud").text();
-                    olHitos.append(jQuery("<li>").text(nombreHito + " - Distancia desde anterior: " + dist + " (Coords: " + latH + ", " + lonH + ")"));
-                });
-                sectionHitos.append(olHitos);
-                sectionRuta.append(sectionHitos);
+    /**
+     * Procesa la colección de nodos de ruta y genera su contenido HTML.
+     */
+    procesarRutas($rutas) {
+        const main = jQuery("main");
+        const self = this;
 
-                // Mapa (Planimetría KML)
-                const sectionMapa = jQuery("<section>");
-                sectionMapa.append(jQuery("<h4>").text("Planimetría (Mapa)"));
-                const mapContainer = jQuery("<div>");
-                mapContainer.css({
-                    "height": "400px",
-                    "width": "100%",
-                    "margin-bottom": "20px"
-                });
-                sectionMapa.append(mapContainer);
-                sectionRuta.append(sectionMapa);
-
-                // Altimetría (SVG)
-                const sectionAlt = jQuery("<section>");
-                sectionAlt.append(jQuery("<h4>").text("Altimetría (Perfil)"));
-                const svgContainer = jQuery("<div>");
-                sectionAlt.append(svgContainer);
-                sectionRuta.append(sectionAlt);
-
-                main.append(sectionRuta);
-
-                // Inicializar Mapa y SVG después de añadir al DOM
-                self.initMapa(mapContainer[0], "xml/" + kmlFile);
-                self.initSVG(svgContainer[0], "xml/" + svgFile);
-            });
-        }
-
-        /**
-         * Inicializa un mapa de Leaflet en el contenedor y carga el KML.
-         */
-        initMapa(container, kmlPath) {
-            const map = L.map(container).setView([41.1167, 1.25], 13);
+        $rutas.each(function() {
+            const rutaNode = jQuery(this);
+            const nombre = rutaNode.find("nombreRuta").text();
             
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
+            const sectionRuta = jQuery("<section>");
+            sectionRuta.append(jQuery("<h3>").text(nombre));
+            
+            // Información General
+            const sectionInfo = jQuery("<section>");
+            sectionInfo.append(jQuery("<h4>").text("Información General"));
+            const ulInfo = jQuery("<ul>");
+            ulInfo.append(jQuery("<li>").html("Tipo: " + rutaNode.find("tipoRuta").text()));
+            ulInfo.append(jQuery("<li>").html("Transporte: " + rutaNode.find("medioTransporte").text()));
+            ulInfo.append(jQuery("<li>").html("Duración:" + rutaNode.find("tiempoDuracion").text()));
+            ulInfo.append(jQuery("<li>").html("Agencia: " + rutaNode.find("agenciaGestora").text()));
+            
+            const latIni = rutaNode.find("coordenadasGeograficas latitud").text();
+            const lonIni = rutaNode.find("coordenadasGeograficas longitud").text();
+            const altIni = rutaNode.find("coordenadasGeograficas altitud").text();
+            ulInfo.append(jQuery("<li>").html("Inicio:" + rutaNode.find("lugarInicio").text() + " (" + latIni + ", " + lonIni + ", " + altIni + "m)"));
+            
+            sectionInfo.append(ulInfo);
+            sectionInfo.append(jQuery("<p>").html("Descripción: " + rutaNode.find("descripcion").text()));
+            sectionInfo.append(jQuery("<p>").html("Adecuado para: " + rutaNode.find("personasAdecuadas").text()));
+            sectionInfo.append(jQuery("<p>").html("Recomendación: " + rutaNode.find("recomendacion").text()));
 
-            omnivore.kml(kmlPath)
-                .on('ready', function() {
-                    map.fitBounds(this.getBounds());
-                })
-                .addTo(map);
-        }
+            // Referencias Bibliográficas
+            const sectionRefs = jQuery("<section>");
+            sectionRefs.append(jQuery("<h4>").text("Referencias Bibliográficas"));
+            const ulRefs = jQuery("<ul>");
+            rutaNode.find("referenciasBibliograficas referencia").each(function() {
+                const ref = jQuery(this).text();
+                ulRefs.append(jQuery("<li>").append(jQuery("<a>").attr("href", ref).text(ref)));
+            });
+            sectionRefs.append(ulRefs);
+            sectionInfo.append(sectionRefs);
+            sectionRuta.append(sectionInfo);
 
-        /**
-         * Carga el SVG y lo inserta en el contenedor.
-         */
-        initSVG(container, svgPath) {
+            // Hitos
+            const sectionHitos = jQuery("<section>");
+            sectionHitos.append(jQuery("<h4>").text("Hitos de la Ruta"));
+            const olHitos = jQuery("<ol>");
+            rutaNode.find("hito").each(function() {
+                const hito = jQuery(this);
+                const nombreHito = hito.find("nombreHito").text();
+                const dist = hito.find("distanciaHitoAnterior").text();
+                const latH = hito.find("coordenadasHito latitud").text();
+                const lonH = hito.find("coordenadasHito longitud").text();
+                olHitos.append(jQuery("<li>").text(nombreHito + " - Distancia: " + dist + " (Coords: " + latH + ", " + lonH + ")"));
+            });
+            sectionHitos.append(olHitos);
+            sectionRuta.append(sectionHitos);
+
+            // Galería de fotos
+            const sectionGaleria = jQuery("<section>");
+            sectionGaleria.append(jQuery("<h4>").text("Galería de fotos"));
+            rutaNode.find("hito galeriaFotografia fotografia").each(function() {
+                const fotoPath = jQuery(this).text();
+                sectionGaleria.append(jQuery("<img>").attr("src", fotoPath).attr("alt", "Imagen de hito"));
+            });
+            sectionRuta.append(sectionGaleria);
+
+            // Mapa
+            const sectionMapa = jQuery("<section>");
+            sectionMapa.append(jQuery("<h4>").text("Planimetría (Mapa)"));
+            const mapContainer = jQuery("<div>"); // Bloque anónimo para el mapa (EXCEPCIÓN PERMITIDA)
+            sectionMapa.append(mapContainer);
+            sectionRuta.append(sectionMapa);
+
+            // Altimetría
+            const sectionAlt = jQuery("<section>");
+            sectionAlt.append(jQuery("<h4>").text("Altimetría (Perfil)"));
+            sectionRuta.append(sectionAlt);
+
+            main.append(sectionRuta);
+
+            // Inicialización diferida de componentes gráficos
+            self.initMapa(mapContainer[0], parseFloat(latIni), parseFloat(lonIni), "xml/" + rutaNode.find("planimetria").text());
+            self.initSVG(sectionAlt[0], "xml/" + rutaNode.find("altimetria").text());
+        });
+    }
+
+    /**
+     * Inicializa Google Maps y parsea el KML.
+     * Utiliza la nueva API de carga de librerías de Google (async/await).
+     */
+    async initMapa(container, lat, lon, kmlPath) {
+        try {
+            // Importación de librerías necesarias mediante el cargador dinámico
+            const { Map, Polyline, LatLngBounds } = await google.maps.importLibrary("maps");
+
+            const mapOptions = {
+                center: { lat: lat, lng: lon },
+                zoom: 14,
+                mapTypeId: 'terrain'
+            };
+            const map = new Map(container, mapOptions);
+
+            // Parsing manual del KML mediante AJAX/jQuery
             jQuery.ajax({
                 type: "GET",
-                url: svgPath,
-                dataType: "text",
-                success: (svgData) => {
-                    const $container = jQuery(container);
-                    $container.html(svgData);
-                    const svg = $container.find("svg");
-                    svg.css({"width": "100%", "height": "auto"});
-                },
-                error: () => {
-                    jQuery(container).html("<p>Error al cargar la altimetría.</p>");
+                url: kmlPath,
+                dataType: "xml",
+                success: function(xml) {
+                    const coordinatesStr = jQuery(xml).find("coordinates").text().trim();
+                    const points = [];
+                    const lines = coordinatesStr.split(/[\s\n\r]+/);
+                    const bounds = new google.maps.LatLngBounds();
+
+                    lines.forEach(function(line) {
+                        if (line.trim().length > 0) {
+                            const coords = line.split(",");
+                            if (coords.length >= 2) {
+                                const point = { lat: parseFloat(coords[1]), lng: parseFloat(coords[0]) };
+                                points.push(point);
+                                bounds.extend(point);
+                            }
+                        }
+                    });
+
+                    if (points.length > 0) {
+                        new Polyline({
+                            path: points,
+                            geodesic: true,
+                            strokeColor: "#FF0000",
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2,
+                            map: map
+                        });
+                        map.fitBounds(bounds);
+                    }
                 }
             });
+        } catch (error) {
+            console.error("Error al inicializar el mapa:", error);
+            // Si hay un error de facturación o de carga, informamos al usuario sin romper el resto de la página
+            jQuery(container).append(jQuery("<p>").text("El mapa dinámico no está disponible (requiere facturación en Google Cloud)."));
         }
     }
 
     /**
-     * Inicialización segura: espera a que las librerías cargadas al final del body estén listas.
+     * Carga el SVG e inserta su contenido directamente.
      */
-    const intentarInicializar = () => {
-        if (window.jQuery && window.L && window.omnivore) {
-            const app = new Rutas();
-            app.init();
-        } else {
-            // Reintenta cada 100ms
-            setTimeout(intentarInicializar, 100);
-        }
-    };
+    initSVG(container, svgPath) {
+        jQuery.ajax({
+            type: "GET",
+            url: svgPath,
+            dataType: "text",
+            success: (svgData) => {
+                jQuery(container).append(svgData);
+            },
+            error: (e) => {
+                console.error("Error al cargar SVG:", e);
+            }
+        });
+    }
+}
 
-    // Lanzamos la primera comprobación
-    intentarInicializar();
-})();
+// Inicialización de la clase Rutas cuando el DOM esté listo
+jQuery(document).ready(() => {
+    const app = new Rutas();
+    app.init();
+});

@@ -3,8 +3,7 @@
 
 /**
  * Clase que gestiona un juego de 10 preguntas tipo test sobre Tarragona.
- * Desarrollado en ECMAScript puro, sin jQuery.
- * Cumple con las restricciones de no usar div ni selectores id/class.
+ * Implementado usando jQuery encapsulado en el paradigma de POO.
  */
 class Juego {
     #preguntas;
@@ -12,9 +11,6 @@ class Juego {
     #mainElement;
     #formElement;
 
-    /**
-     * Constructor del juego. Inicializa las preguntas y el estado.
-     */
     constructor() {
         this.#preguntas = [
             {
@@ -69,69 +65,63 @@ class Juego {
             }
         ];
         this.#puntuacion = 0;
-        this.#mainElement = document.querySelector("main");
+        this.#mainElement = $("main");
         this.#formElement = null;
     }
 
-    /**
-     * Inicia el juego renderizando el formulario de preguntas.
-     */
     inicializar() {
-        this.#mainElement.innerHTML = "";
+        this.#mainElement.empty();
         
-        const section = document.createElement("section");
-        const h2 = document.createElement("h2");
-        h2.textContent = "Test de Experiencia: Conoce Tarragona";
-        section.appendChild(h2);
+        const section = $("<section>");
+        const h2 = $("<h2>").text("Test de Experiencia: Conoce Tarragona");
+        section.append(h2);
 
-        this.#formElement = document.createElement("form");
+        this.#formElement = $("<form>");
         
         this.#preguntas.forEach((p, index) => {
-            const article = document.createElement("article");
-            const h3 = document.createElement("h3");
-            h3.textContent = (index + 1) + ". " + p.pregunta;
-            article.appendChild(h3);
+            const article = $("<article>");
+            const h3 = $("<h3>").text((index + 1) + ". " + p.pregunta);
+            article.append(h3);
 
             p.opciones.forEach((opcion, i) => {
-                const label = document.createElement("label");
-                const input = document.createElement("input");
-                input.type = "radio";
-                input.name = "pregunta" + index;
-                input.value = i;
-                input.required = true; // Obligatorio responder todas
+                const label = $("<label>");
+                const input = $("<input>")
+                    .attr("type", "radio")
+                    .attr("name", "pregunta" + index)
+                    .attr("value", i)
+                    .prop("required", true);
 
-                label.appendChild(input);
-                label.appendChild(document.createTextNode(" " + opcion));
-                article.appendChild(label);
-                article.appendChild(document.createElement("br"));
+                label.append(input).append(" " + opcion);
+                article.append(label).append("<br>");
             });
 
-            this.#formElement.appendChild(article);
+            this.#formElement.append(article);
         });
 
-        const submitBtn = document.createElement("button");
-        submitBtn.type = "submit";
-        submitBtn.textContent = "Finalizar Juego";
-        this.#formElement.appendChild(submitBtn);
+        const submitBtn = $("<button>")
+            .attr("type", "submit")
+            .text("Finalizar Juego");
+        this.#formElement.append(submitBtn);
 
-        this.#formElement.onsubmit = (e) => {
+        this.#formElement.on("submit", (e) => {
             e.preventDefault();
             this.#finalizarJuego();
-        };
+        });
 
-        section.appendChild(this.#formElement);
-        this.#mainElement.appendChild(section);
+        section.append(this.#formElement);
+        this.#mainElement.append(section);
     }
 
-    /**
-     * Calcula la puntuación y muestra el resultado debajo del botón.
-     */
     #finalizarJuego() {
         this.#puntuacion = 0;
-        const data = new FormData(this.#formElement);
+        const formArray = this.#formElement.serializeArray();
+        const respuestas = {};
+        formArray.forEach(item => {
+            respuestas[item.name] = item.value;
+        });
 
         this.#preguntas.forEach((p, index) => {
-            const respuesta = data.get("pregunta" + index);
+            const respuesta = respuestas["pregunta" + index];
             if (parseInt(respuesta) === p.correcta) {
                 this.#puntuacion++;
             }
@@ -140,38 +130,23 @@ class Juego {
         this.#mostrarResultado();
     }
 
-    /**
-     * Renderiza el resultado final como un h2 debajo del botón.
-     */
     #mostrarResultado() {
-        // Si ya hay un resultado previo, lo eliminamos
-        const resultadoPrevio = this.#formElement.querySelector("h2");
-        if (resultadoPrevio) {
-            resultadoPrevio.remove();
-        }
+        this.#formElement.find("h2").remove();
 
-        const h2Resultado = document.createElement("h2");
-        h2Resultado.textContent = "¡Felicidades has sacado " + this.#puntuacion + " / 10 !";
+        const h2Resultado = $("<h2>").text("¡Felicidades has sacado " + this.#puntuacion + " / 10 !");
+        this.#formElement.append(h2Resultado);
         
-        this.#formElement.appendChild(h2Resultado);
-        
-        // Deshabilitar el botón de envío para evitar re-envíos sin reiniciar
-        const submitBtn = this.#formElement.querySelector('button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-        }
+        this.#formElement.find('button[type="submit"]').prop("disabled", true);
 
-        // Añadir un botón para reiniciar
-        const resetBtn = document.createElement("button");
-        resetBtn.type = "button";
-        resetBtn.textContent = "Volver a jugar";
-        resetBtn.onclick = () => this.inicializar();
-        this.#formElement.appendChild(resetBtn);
+        const resetBtn = $("<button>")
+            .attr("type", "button")
+            .text("Volver a jugar")
+            .on("click", () => this.inicializar());
+        this.#formElement.append(resetBtn);
     }
 }
 
-// Inicialización del juego cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(() => {
     const juego = new Juego();
     juego.inicializar();
 });
