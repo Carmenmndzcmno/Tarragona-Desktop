@@ -10,10 +10,10 @@ import xml.etree.ElementTree as ET
 import os
 
 class Svg:
-    def __init__(self, width=800, height=400):
+    def __init__(self, width=800, height=500):
         self.width = width
         self.height = height
-        self.margin = 60
+        self.margin = 80
         self.raiz = ET.Element(
             "svg",
             xmlns="http://www.w3.org/2000/svg",
@@ -35,9 +35,15 @@ class Svg:
             fill=fill
         )
 
-    def add_text(self, x, y, text, font_size="12", text_anchor="start"):
-        t = ET.SubElement(self.raiz, "text", x=str(x), y=str(y), **{"font-size": font_size, "text-anchor": text_anchor, "font-family": "Arial"})
+    def add_text(self, x, y, text, font_size="12", text_anchor="start", transform=None):
+        attrs = {"font-size": font_size, "text-anchor": text_anchor, "font-family": "Arial"}
+        if transform:
+            attrs["transform"] = transform
+        t = ET.SubElement(self.raiz, "text", x=str(x), y=str(y), **attrs)
         t.text = text
+
+    def add_circle(self, cx, cy, r=3, fill="red"):
+        ET.SubElement(self.raiz, "circle", cx=str(cx), cy=str(cy), r=str(r), fill=fill)
 
     def add_line(self, x1, y1, x2, y2, stroke="black", stroke_width="1"):
         ET.SubElement(self.raiz, "line", x1=str(x1), y1=str(y1), x2=str(x2), y2=str(y2), stroke=stroke, **{"stroke-width": stroke_width})
@@ -58,8 +64,6 @@ def genera_altimetrias(archivo_xml):
         print(f"Error al abrir {archivo_xml}: {e}")
         return
 
-    directorio_salida = os.path.dirname(os.path.abspath(archivo_xml))
-
     for ruta in root.findall('ruta'):
         nombre_ruta = ruta.find('nombreRuta').text.strip()
         altimetria_file = ruta.find('altimetria').text.strip()
@@ -68,23 +72,22 @@ def genera_altimetrias(archivo_xml):
             continue
 
         puntos_datos = []
+        nombres_hitos = []
         distancia_acumulada = 0.0
-        
-        inicio = ruta.find('coordenadasGeograficas')
-        alt_inicio = float(inicio.find('altitud').text)
-        puntos_datos.append((0.0, alt_inicio))
         
         hitos = ruta.find('hitos')
         if hitos is not None:
             for hito in hitos.findall('hito'):
+                nombre_hito = hito.find('nombreHito').text.strip()
                 dist_str = hito.find('distanciaHitoAnterior').text.strip()
                 dist_val = float(dist_str.split()[0])
                 distancia_acumulada += dist_val
                 alt_hito = float(hito.find('coordenadasHito/altitud').text)
                 puntos_datos.append((distancia_acumulada, alt_hito))
+                nombres_hitos.append(nombre_hito)
 
-        width, height = 800, 400
-        margin = 60
+        width, height = 800, 500
+        margin = 80
         svg = Svg(width, height)
         
         min_dist = 0
@@ -96,35 +99,50 @@ def genera_altimetrias(archivo_xml):
             return margin + (d / max_dist) * (width - 2 * margin)
         
         def get_y(a):
-            return (height - margin) - ((a - min_alt) / (max_alt - min_alt)) * (height - 2 * margin)
+            return (height - margin - 50) - ((a - min_alt) / (max_alt - min_alt)) * (height - 2 * margin - 50)
 
-        svg.add_line(margin, height - margin, width - margin, height - margin)
-        svg.add_line(margin, margin, margin, height - margin)
+        # Ejes
+        svg.add_line(margin, height - margin - 50, width - margin, height - margin - 50)
+        svg.add_line(margin, margin, margin, height - margin - 50)
         svg.add_text(width/2, height - 10, "Distancia (km)", text_anchor="middle")
-        svg.add_text(15, height/2, "Altitud (m)", text_anchor="middle")
+        svg.add_text(15, height/2, "Altitud (m)", text_anchor="middle", transform=f"rotate(-90, 15, {height/2})")
 
+        # Escala X
         for i in range(6):
             d = i * max_dist / 5
             x = get_x(d)
-            svg.add_line(x, height - margin, x, height - margin + 5)
-            svg.add_text(x, height - margin + 20, f"{d:.1f}", text_anchor="middle", font_size="10")
+            svg.add_line(x, height - margin - 50, x, height - margin - 45)
+            svg.add_text(x, height - margin - 35, f"{d:.1f}", text_anchor="middle", font_size="10")
 
+        # Escala Y
         for i in range(6):
             a = min_alt + i * (max_alt - min_alt) / 5
             y = get_y(a)
             svg.add_line(margin - 5, y, margin, y)
             svg.add_text(margin - 10, y + 4, f"{int(a)}", text_anchor="end", font_size="10")
 
+        # Polilínea de fondo
         puntos_svg = [(get_x(d), get_y(a)) for d, a in puntos_datos]
-        base_y = height - margin
+        base_y = height - margin - 50
         puntos_str = " ".join([f"{x:.2f},{y:.2f}" for x, y in puntos_svg])
         puntos_str += f" {puntos_svg[-1][0]:.2f},{base_y:.2f} {puntos_svg[0][0]:.2f},{base_y:.2f} {puntos_svg[0][0]:.2f},{puntos_svg[0][1]:.2f}"
-
         svg.add_polyline(puntos_str)
+
+        # Hitos
+        for i, (d, a) in enumerate(puntos_datos):
+            x = get_x(d)
+            y = get_y(a)
+            nombre = nombres_hitos[i]
+            
+            # Punto rojo en la gráfica
+            svg.add_circle(x, y, r=4, fill="red")
+            
+            # Etiqueta del hito (rotada para que quepa)
+            svg.add_text(x + 3, y - 10, nombre, font_size="9", text_anchor="start", transform=f"rotate(-45, {x}, {y})")
+
         svg.add_text(width/2, 30, f"Altimetría: {nombre_ruta}", text_anchor="middle", font_size="16")
 
-        ruta_svg = os.path.join(directorio_saldir := os.path.dirname(os.path.abspath(archivo_xml)), altimetria_file)
-        # Forzar escritura directa ya que el script parece no estar guardando en el entorno actual
+        ruta_svg = os.path.join(os.path.dirname(os.path.abspath(archivo_xml)), altimetria_file)
         with open(ruta_svg, 'wb') as f:
             arbol = ET.ElementTree(svg.raiz)
             try: ET.indent(arbol)
