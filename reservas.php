@@ -235,10 +235,13 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="">-- Seleccione --</option>
                                     <?php 
                                     $lista = $reservas->getRecursos();
+                                    $precio_actual = 0;
                                     while($r = $lista->fetch_assoc()): 
-                                        $sel = (isset($_POST['id_recurso']) && $_POST['id_recurso'] == $r['id']) ? 'selected' : '';
+                                        $es_seleccionado = (isset($_POST['id_recurso']) && $_POST['id_recurso'] == $r['id']);
+                                        $sel = $es_seleccionado ? 'selected' : '';
+                                        if ($es_seleccionado) $precio_actual = $r['precio'];
                                     ?>
-                                        <option value="<?php echo $r['id']; ?>" <?php echo $sel; ?>>
+                                        <option value="<?php echo $r['id']; ?>" data-precio="<?php echo $r['precio']; ?>" <?php echo $sel; ?>>
                                             <?php echo $r['nombre']; ?> (<?php echo $r['precio']; ?>€)
                                         </option>
                                     <?php endwhile; ?>
@@ -265,11 +268,25 @@ if (!$database->error && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <?php endwhile; ?>
                                         </select>
                                     </label><br>
-                                    <label>Número de plazas: <input type="number" name="plazas" min="1" value="1" required /></label><br>
+                                    <label>Número de plazas: <input type="number" name="plazas" id="plazas" min="1" value="1" required oninput="calcularPresupuesto()" /></label><br>
+                                    <p>Presupuesto estimado: <span id="presupuesto"><?php echo $precio_actual; ?></span>€</p>
                                     <button type="submit" name="reservar">Confirmar Reserva</button>
                                 </p>
                             </fieldset>
                         </form>
+
+                        <script>
+                            function calcularPresupuesto() {
+                                const select = document.querySelector('select[name="id_recurso"]');
+                                const option = select.options[select.selectedIndex];
+                                const precio = parseFloat(option.getAttribute('data-precio')) || 0;
+                                const plazas = parseInt(document.getElementById('plazas').value) || 0;
+                                const total = precio * plazas;
+                                document.getElementById('presupuesto').textContent = total.toFixed(2);
+                            }
+                            // Inicializar por si ya hay valores
+                            window.onload = calcularPresupuesto;
+                        </script>
                     <?php endif; ?>
                 </section>
 
