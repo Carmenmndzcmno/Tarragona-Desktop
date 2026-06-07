@@ -41,13 +41,6 @@ body > p:first-of-type {
     font-size: 0.8rem;
 }
 
-/* main > section > article */
-/* Hereda color de body. Se aplica fondo gris suave para destacar bloques de contenido */
-/* Especificidad: 0,0,3 */
-main > section > article {
-    background-color: #f4f4f4; /* Redefinición de fondo para legibilidad */
-}
-
 /* label > input[type="file"] */
 /* Hereda propiedades de fuente del contenedor. Se oculta texto nativo para personalización */
 /* Especificidad: 0,0,2 */
@@ -56,25 +49,8 @@ label > input[type="file"] {
     color: transparent; /* Justificación: Se oculta para usar ::file-selector-button personalizado */
 }
 
-/* table */
-/* Hereda color de body. Se define estructura básica de tablas */
-/* Especificidad: 0,0,1 */
-table {
-    border: 0.06rem solid #111613;
-}
-
-/* th, td */
-/* Heredan propiedades de table. Se añade espaciado y bordes */
-/* Especificidad: 0,0,1 */
-th, td {
-    border: 0.06rem solid #111613;
-    padding: 0.5rem;
-}
-
-/* th */
-/* Hereda de table. Fondo destacado para cabeceras de tabla */
-/* Especificidad: 0,0,1 */
-th {
-    background-color: #5A1400;
-    color: #ECede6; /* Redefinición para contraste con fondo oscuro */
+/*especificacion (0,1,2)*/
+/*Hereda de body en este caso el background*/
+header a.active {
+    color: #5A1400;
 }

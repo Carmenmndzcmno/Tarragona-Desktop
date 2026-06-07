@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!-- 2 -->
+<!-- 5 -->
 <html lang="es">
 <head>
     <!-- Datos que describen el documento. Es el head!! -->
@@ -15,6 +15,16 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2GUmaoZwabQlvFR8cLZYMkdMtlJDQ680" async defer></script>
     <script src="js/rutas.js"></script>
+    <script>
+                // Función global requerida por el cargador de Google Maps
+                window.initMap = function() {};
+                
+                // Cargador moderno y asíncrono recomendado por Google
+                (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. See https://goo.gle/js-api-loading"):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                    key: "AIzaSyDpsvv__RB-CI1BgGLFkaK2impdb79vIzo",
+                    v: "weekly"
+                });
+            </script>
 </head>
 
 <body>
@@ -29,6 +39,7 @@
             <a href="juego.html" title="Información sobre juego">Juego</a>
             <a href="reservas.php" title="Información sobre las reservas">Reservas</a>
             <a href="ayuda.html" title="Ayuda de Tarragona-Desktop" >Ayuda</a>
+            
         </nav>
     </header>
 
@@ -38,16 +49,7 @@
         <section>
             <h2>Rutas de Tarragona</h2>
             <!-- El contenido se cargará dinámicamente mediante rutas.js -->
-            <script>
-                // Función global requerida por el cargador de Google Maps
-                window.initMap = function() {};
-                
-                // Cargador moderno y asíncrono recomendado por Google
-                (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. See https://goo.gle/js-api-loading"):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-                    key: "AIzaSyDpsvv__RB-CI1BgGLFkaK2impdb79vIzo",
-                    v: "weekly"
-                });
-            </script>
+            
         </section>
     </main>
 </body>

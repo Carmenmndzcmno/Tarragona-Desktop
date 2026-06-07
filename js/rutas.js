@@ -16,6 +16,10 @@ class Rutas {
      */
     init() {
         const self = this;
+        
+        // Corrección de caracteres ilegales en enlaces inyectados (W3C)
+        this.corregirEnlacesInyectados();
+
         jQuery.ajax({
             type: "GET",
             url: this.xmlPath,
@@ -199,6 +203,42 @@ class Rutas {
                 console.error("Error al cargar SVG:", e);
             }
         });
+    }
+
+    /**
+     * Corrige caracteres ilegales en enlaces inyectados por APIs externas (como Google Maps)
+     * para cumplir con las validaciones W3C del DOM generado.
+     */
+    corregirEnlacesInyectados() {
+        // Observamos todo el documento (incluyendo head y body) para detectar inyecciones
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    // Verificamos si el nodo es un elemento LINK (Google Fonts)
+                    if (node.nodeType === 1 && node.tagName === 'LINK') {
+                        this.codificarHref(node);
+                    }
+                    // Si el nodo tiene hijos, los revisamos también
+                    if (node.nodeType === 1 && node.querySelectorAll) {
+                        node.querySelectorAll('link').forEach(link => this.codificarHref(link));
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+        
+        // Corregir los que ya existan y monitorizar cambios de atributos (por si se actualizan dinámicamente)
+        jQuery('link[href*="|"]').each((i, el) => this.codificarHref(el));
+    }
+
+    /**
+     * Codifica el carácter '|' en '%7C' para un elemento dado.
+     */
+    codificarHref(el) {
+        if (el.href && el.href.includes('|')) {
+            el.href = el.href.replace(/\|/g, '%7C');
+        }
     }
 }
 

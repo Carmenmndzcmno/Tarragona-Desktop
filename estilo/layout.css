@@ -40,6 +40,22 @@ section > article {
     border-radius: 0.5rem;
 }
 
+/* section article img (para las imágenes del carrusel en el index) */
+/* Especificidad: 0,0,3 */
+section > article img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+}
+
+/* video */
+/* Se asegura que los vídeos no desborden el contenedor en pantallas pequeñas */
+/* Especificidad: 0,0,1 */
+video {
+    max-width: 100%;
+    height: auto;
+}
+
 /* table */
 /* Se asegura que las tablas no rompan el layout en pantallas pequeñas */
 /* Especificidad: 0,0,1 */
@@ -57,7 +73,7 @@ div {
 
 /* section img (para la galería de fotos de rutas) */
 /* Especificidad: 0,0,2 */
-section img {
+section > section img {
     display: inline-block;
     max-width: 12.5rem;
     margin: 0.625rem;
@@ -89,7 +105,23 @@ section svg {
         flex-direction: column;
         align-items: center;
     }
+
+    /* table, thead, tbody, tr, th, td */
+    /* Las tablas se comportan como bloques para evitar el desbordamiento horizontal */
+    /* Especificidad: 0,0,1 */
+    table, thead, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    /* tr */
+    /* Margen entre filas en vista móvil */
+    /* Especificidad: 0,0,1 */
+    tr {
+        margin-bottom: 1rem;
+    }
 }
+
 
 /* Móviles pequeños */
 @media (max-width: 30rem) {
