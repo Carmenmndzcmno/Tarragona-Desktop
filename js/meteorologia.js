@@ -2,11 +2,7 @@
 "use strict";
 
 /**
- * Clase que gestiona la información meteorológica de una ciudad.
- * Utiliza jQuery para consumir servicios web de Open-Meteo.
- * Cumple con el paradigma OOP y las restricciones del proyecto.
- * Muestra la información en textos simples similar a ciudadold.js.
- * Se evita el uso de 'article' como hijo directo de 'section' en 'main' para no heredar fondos negros de layout.css.
+ * Clase que gestiona la informacion meteorolóogica
  */
 class Meteorologia {
     #latitud;
@@ -17,8 +13,6 @@ class Meteorologia {
 
     /**
      * Constructor de la clase Meteorologia.
-     * @param {number} lat - Latitud de la ciudad (Tarragona capital: 41.1167).
-     * @param {number} lon - Longitud de la ciudad (Tarragona capital: 1.25).
      */
     constructor(lat = 41.1167, lon = 1.25) {
         this.#latitud = lat;
@@ -29,7 +23,7 @@ class Meteorologia {
     }
 
     /**
-     * Obtiene y muestra la información meteorológica en tiempo real.
+     * Obtiene y muestra la informacion meteorologica en tiempo real
      */
     obtenerTiempoReal() {
         $.ajax({
@@ -52,7 +46,7 @@ class Meteorologia {
     }
 
     /**
-     * Obtiene y muestra la previsión meteorológica para los próximos 7 días.
+     * Obtiene y muestra la prevision meteorologica para los proximos 7 dias
      */
     obtenerPrevision() {
         $.ajax({
@@ -75,8 +69,7 @@ class Meteorologia {
     }
 
     /**
-     * Renderiza el tiempo real en el DOM de forma simple.
-     * @param {Object} current - Datos del tiempo real.
+     * Renderiza el tiempo real
      */
     #renderTiempoReal(current) {
         const section = $("<section>");
@@ -92,8 +85,7 @@ class Meteorologia {
     }
 
     /**
-     * Renderiza la previsión de 7 días en el DOM de forma simple.
-     * @param {Object} daily - Datos de la previsión diaria.
+     * Renderiza la prevision de 7 dias
      */
     #renderPrevision(daily) {
         const section = $("<section>");
@@ -101,7 +93,6 @@ class Meteorologia {
         section.append(h2);
 
         for (let i = 0; i < daily.time.length; i++) {
-            // Se utiliza 'section' en lugar de 'article' para evitar el selector de layout.css
             const itemSection = $("<section>");
             const h3 = $("<h3>").text(new Date(daily.time[i]).toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }));
             
@@ -117,7 +108,7 @@ class Meteorologia {
     }
 }
 
-// Inicialización de la meteorología cuando el DOM esté listo
+// Inicializacion
 $(document).ready(() => {
     const meteo = new Meteorologia();
     meteo.obtenerTiempoReal();

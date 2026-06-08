@@ -2,14 +2,13 @@
 "use strict";
 
 /**
- * Clase que gestiona la obtención y visualización de noticias utilizando una API externa.
- * Cumple con las restricciones de no usar div ni selectores id/class.
+ * Clase que gestiona la obtencion y visualizacion de noticias
  */
 class Noticias {
     #busqueda;
     #url;
     #api = "X3dEmmtXsjL7P9YZmrKiBchq3oNFaXLOwrJmsvfy";
-    #sectionNoticias; // Referencia privada a la sección de noticias
+    #sectionNoticias;
 
     /**
      * Constructor de la clase Noticias.
@@ -21,7 +20,7 @@ class Noticias {
     }
 
     /**
-     * Busca noticias a través de la API externa.
+     * Busca noticias a traves de la API externa
      */
     async buscarNoticias() {
         const url = `${this.#url}?api_token=${this.#api}&search=${this.#busqueda}&language=es`;
@@ -36,7 +35,7 @@ class Noticias {
         } catch (error) {
             console.error("Error al obtener noticias:", error.message);
 
-            // Mostrar mensaje de error en la sección correspondiente
+            // Mostrar mensaje de error en la seccion correspondiente
             if (this.#sectionNoticias) {
                 const errorMsg = $("<p>").text("Error al cargar noticias. Verifique la consola o la clave API.");
                 this.#sectionNoticias.append(errorMsg);
@@ -45,8 +44,7 @@ class Noticias {
     }
 
     /**
-     * Procesa la información recibida de la API.
-     * @param {Object} datos - Datos de la API.
+     * Procesa la informacion recibida de la API
      */
     #procesarInformacion(datos) {
         let noticias = [];
@@ -68,8 +66,7 @@ class Noticias {
     }
 
     /**
-     * Renderiza las noticias en el DOM.
-     * @param {Array} noticias - Lista de noticias procesadas.
+     * Renderiza las noticias
      */
     #mostrarNoticias(noticias) {
         const main = $("main");
@@ -78,7 +75,7 @@ class Noticias {
             return;
         }
 
-        // Si la sección no existe, se crea y se añade al final de main
+        // Si la seccion no existe, se crea y se anade al final de main
         if (!this.#sectionNoticias) {
             this.#sectionNoticias = $("<section>");
             main.append(this.#sectionNoticias);
@@ -94,10 +91,8 @@ class Noticias {
         }
 
         noticias.forEach(noticia => {
-            // Se utilizan etiquetas semánticas article, h3 y p para cumplir con W3C y estilos CSS
             const article = $("<article>");
             
-            // Título de la noticia como h3 para validación W3C
             const h3 = $("<h3>").text(noticia.title || "Noticia de Tarragona");
             
             const pEntradilla = $("<p>").text(noticia.entradilla);
@@ -106,7 +101,6 @@ class Noticias {
                 .attr("href", noticia.url)
                 .text("Leer más");
 
-            // Aseguramos que el h3 sea lo primero en el article
             article.append(h3);
             article.append(pEntradilla);
             article.append(pSource);
@@ -117,7 +111,7 @@ class Noticias {
     }
 }
 
-// Inicialización de la clase Noticias cuando el DOM esté listo
+// Inicializacion
 $(document).ready(() => {
     const noticias = new Noticias();
     noticias.buscarNoticias();

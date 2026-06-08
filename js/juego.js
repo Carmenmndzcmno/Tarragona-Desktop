@@ -2,8 +2,7 @@
 "use strict";
 
 /**
- * Clase que gestiona un juego de 10 preguntas tipo test sobre Tarragona.
- * Implementado usando jQuery encapsulado en el paradigma de POO.
+ * Clase que gestiona un juego de 10 preguntas tipo test
  */
 class Juego {
     #preguntas;
@@ -11,6 +10,7 @@ class Juego {
     #mainElement;
     #formElement;
 
+    // Constructor
     constructor() {
         this.#preguntas = [
             {
@@ -69,6 +69,7 @@ class Juego {
         this.#formElement = null;
     }
 
+    // Inicializacion
     inicializar() {
         this.#mainElement.empty();
         
@@ -112,6 +113,7 @@ class Juego {
         this.#mainElement.append(section);
     }
 
+    // Finalizacion
     #finalizarJuego() {
         this.#puntuacion = 0;
         const formArray = this.#formElement.serializeArray();
@@ -130,6 +132,7 @@ class Juego {
         this.#mostrarResultado();
     }
 
+    // Mostrar Resultados
     #mostrarResultado() {
         this.#formElement.find("h2").remove();
 
@@ -146,6 +149,7 @@ class Juego {
     }
 }
 
+// Cargar juego
 $(document).ready(() => {
     const juego = new Juego();
     juego.inicializar();

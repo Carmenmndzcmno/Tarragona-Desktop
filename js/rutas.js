@@ -2,9 +2,7 @@
 "use strict";
 
 /**
- * Clase que gestiona la carga y visualización de rutas turísticas.
- * Utiliza jQuery para el procesamiento de XML y la API de Google Maps para la cartografía.
- * Respeta todas las restricciones: OOP, solo jQuery/Gmaps, sin divs extras, medidas relativas.
+ * Clase que gestiona la carga y visualizacion de rutas turisticas
  */
 class Rutas {
     constructor() {
@@ -12,12 +10,11 @@ class Rutas {
     }
 
     /**
-     * Carga el archivo XML y comienza el procesamiento.
+     * Carga el archivo XML¡
      */
     init() {
         const self = this;
         
-        // Corrección de caracteres ilegales en enlaces inyectados (W3C)
         this.corregirEnlacesInyectados();
 
         jQuery.ajax({
@@ -25,7 +22,6 @@ class Rutas {
             url: this.xmlPath,
             dataType: "xml",
             success: function(xml) {
-                // Buscamos todos los elementos <ruta> de forma robusta
                 const $rutas = jQuery(xml).find("ruta");
                 
                 if ($rutas.length > 0) {
@@ -42,7 +38,7 @@ class Rutas {
     }
 
     /**
-     * Procesa la colección de nodos de ruta y genera su contenido HTML.
+     * Procesa la ruta
      */
     procesarRutas($rutas) {
         const main = jQuery("main");
@@ -74,7 +70,7 @@ class Rutas {
             sectionInfo.append(jQuery("<p>").html("Adecuado para: " + rutaNode.find("personasAdecuadas").text()));
             sectionInfo.append(jQuery("<p>").html("Recomendación: " + rutaNode.find("recomendacion").text()));
 
-            // Referencias Bibliográficas
+            // Referencias Bibliograficas
             const sectionRefs = jQuery("<section>");
             sectionRefs.append(jQuery("<h4>").text("Referencias Bibliográficas"));
             const ulRefs = jQuery("<ul>");
@@ -101,7 +97,7 @@ class Rutas {
             sectionHitos.append(olHitos);
             sectionRuta.append(sectionHitos);
 
-            // Galería de fotos
+            // fotos
             const sectionGaleria = jQuery("<section>");
             sectionGaleria.append(jQuery("<h4>").text("Galería de fotos"));
             rutaNode.find("hito galeriaFotografia fotografia").each(function() {
@@ -117,26 +113,23 @@ class Rutas {
             sectionMapa.append(mapContainer);
             sectionRuta.append(sectionMapa);
 
-            // Altimetría
+            // Altimetria
             const sectionAlt = jQuery("<section>");
             sectionAlt.append(jQuery("<h4>").text("Altimetría (Perfil)"));
             sectionRuta.append(sectionAlt);
 
             main.append(sectionRuta);
 
-            // Inicialización diferida de componentes gráficos
             self.initMapa(mapContainer[0], parseFloat(latIni), parseFloat(lonIni), "xml/" + rutaNode.find("planimetria").text());
             self.initSVG(sectionAlt[0], "xml/" + rutaNode.find("altimetria").text());
         });
     }
 
     /**
-     * Inicializa Google Maps y parsea el KML.
-     * Utiliza la nueva API de carga de librerías de Google (async/await).
+     * Inicializa Google Maps
      */
     async initMapa(container, lat, lon, kmlPath) {
         try {
-            // Importación de librerías necesarias mediante el cargador dinámico
             const { Map, Polyline, LatLngBounds } = await google.maps.importLibrary("maps");
 
             const mapOptions = {
@@ -146,7 +139,6 @@ class Rutas {
             };
             const map = new Map(container, mapOptions);
 
-            // Parsing manual del KML mediante AJAX/jQuery
             jQuery.ajax({
                 type: "GET",
                 url: kmlPath,
@@ -183,13 +175,13 @@ class Rutas {
             });
         } catch (error) {
             console.error("Error al inicializar el mapa:", error);
-            // Si hay un error de facturación o de carga, informamos al usuario sin romper el resto de la página
+            // Si hay un error
             jQuery(container).append(jQuery("<p>").text("El mapa dinámico no está disponible (requiere facturación en Google Cloud)."));
         }
     }
 
     /**
-     * Carga el SVG e inserta su contenido directamente.
+     * Carga el SVG e inserta su contenido directamente
      */
     initSVG(container, svgPath) {
         jQuery.ajax({
@@ -207,7 +199,7 @@ class Rutas {
 
     /**
      * Corrige caracteres ilegales en enlaces inyectados por APIs externas (como Google Maps)
-     * para cumplir con las validaciones W3C del DOM generado.
+     * Metodo creado por asegurar y reducir el maximo de los errores de Google Maps
      */
     corregirEnlacesInyectados() {
         // Observamos todo el documento (incluyendo head y body) para detectar inyecciones
@@ -242,7 +234,7 @@ class Rutas {
     }
 }
 
-// Inicialización de la clase Rutas cuando el DOM esté listo
+// Inicializacion
 jQuery(document).ready(() => {
     const app = new Rutas();
     app.init();

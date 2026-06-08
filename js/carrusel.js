@@ -1,21 +1,19 @@
-// Datos personales: Carmen Méndez Camino UO299841
+// Datos personales: Carmen Mendez Camino UO299841
 "use strict";
 
 /**
- * Clase que gestiona un carrusel de imágenes locales utilizando jQuery.
- * Sigue el paradigma de orientación a objetos en ECMAScript.
- * Cumple con las restricciones de no usar div ni selectores id/class.
+ * Clase que gestiona un carrusel de imagenes
  */
 class Carrusel {
     #imagenes;
     #indiceActual;
-    #imgElement; // Referencia privada al elemento img del DOM
+    #imgElement;
 
     /**
-     * Constructor del carrusel. Inicializa las imágenes y el índice actual.
+     * Constructor del carrusel. Inicializa las imagenes y el indice actual
      */
     constructor() {
-        // Mínimo de 5 fotos, incluyendo un mapa de situación
+        // Minimo de 5 fotos
         this.#imagenes = [
             { src: "multimedia/Carrusel01.jpg", alt: "Mapa de situación de la provincia de Tarragona" },
             { src: "multimedia/Carrusel02.jpg", alt: "Anfiteatro romano de Tarragona" },
@@ -28,18 +26,16 @@ class Carrusel {
     }
 
     /**
-     * Renderiza el carrusel en el elemento main del index.html.
-     * Encapsula el uso de jQuery y utiliza etiquetas semánticas.
+     * Renderiza el carrusel
      */
     render() {
         const sectionCarrusel = $("<section>");
         const h2 = $("<h2>").text("Principales recursos turísticos de Tarragona");
         
-        // Se añade un article con encabezado para cumplir con la validación W3C y mantener los estilos de layout.css
+        // Se anade un article con encabezado para cumplir con la validacion W3C
         const article = $("<article>");
         const h3 = $("<h3>").text("Imagen del recurso turístico").hide();
         
-        // Se guarda la referencia al elemento img para actualizarlo sin selectores globales
         this.#imgElement = $("<img>")
             .attr("src", this.#imagenes[this.#indiceActual].src)
             .attr("alt", this.#imagenes[this.#indiceActual].alt);
@@ -62,8 +58,7 @@ class Carrusel {
     }
 
     /**
-     * Actualiza la imagen mostrada en el DOM usando la referencia almacenada.
-     * Encapsula el uso de jQuery.
+     * Actualiza la imagen mostrada en el DOM usando la referencia almacenada
      */
     #actualizarImagen() {
         if (this.#imgElement) {
@@ -75,7 +70,7 @@ class Carrusel {
     }
 }
 
-// Inicialización del carrusel cuando el DOM esté listo
+// Inicializacion del carrusel
 $(document).ready(() => {
     const carrusel = new Carrusel();
     carrusel.render();
