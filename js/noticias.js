@@ -7,7 +7,7 @@
 class Noticias {
     #busqueda;
     #url;
-    #api = "X3dEmmtXsjL7P9YZmrKiBchq3oNFaXLOwrJmsvfy";
+    #api = "";
     #sectionNoticias;
 
     /**
