@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $user = "DBUSER2026";
-    private $pass = "DBPWD2026";
-    private $dbname = "UO299841_DB";
+    private $host = "";
+    private $user = "";
+    private $pass = "";
+    private $dbname = "";
     private $conn;
     public $error = null;
 
